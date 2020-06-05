@@ -1,7 +1,7 @@
 # README
 
-# <アプリ名>
-みんなの栄養、FEN(For Everyone Nutrition)
+# FEN/みんなの栄養
+FEN(For Everyone Nutrition)
 
 ## サイト概要
 一つの食品、食材によっても商品ごとに栄養素が異なる。
