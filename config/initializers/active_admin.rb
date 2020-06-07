@@ -6,6 +6,7 @@ ActiveAdmin.setup do |config|
   #
   config.site_title = "FEN"
 
+
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
@@ -332,4 +333,22 @@ ActiveAdmin.setup do |config|
   # You can switch to using Webpacker here.
   #
   # config.use_webpacker = true
+
+
+  # config.site_title = 'FEN'                               # サイトのタイトル
+  # config.site_title_link = '/manage'                       # ロゴのリンク設定
+  # config.site_title_image = '/assets/FEN_logo.png'        # ロゴの画像を用意
+  # config.default_namespace = :manage                       # route がデフォルトの /admin ではなく、/manage になる
+  # config.namespace :manage do |manage|
+  #   manage.site_title = 'FEN 管理ページ'
+  # end
+  # config.favicon = '/assets/favicon.ico'                   # favicon を用意できたら
+  # config.authentication_method = :authenticate_admin_user! # 管理画面にアクセスする際の認証メソッド ( concerns に追加するメソッド )
+  # config.current_user_method = :current_admin_user         # ログインユーザー情報を取得するメソッド ( concerns に追加するメソッド )
+  # config.logout_link_path = :destroy_admin_session_path    # ログアウト時のパス 新たに定義する routes
+  # config.logout_link_method = :delete                      # ログアウト時の METHOD を DELETE へ
+  
 end
+
+
+
