@@ -7,6 +7,11 @@ class DeviseCreateEndUsers < ActiveRecord::Migration[5.2]
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
 
+      t.string :end_user_name
+      t.integer :area     #enumのプルダウン式
+      t.boolean :user_status, default: true, null: false
+
+
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
