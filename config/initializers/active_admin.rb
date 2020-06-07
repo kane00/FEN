@@ -92,7 +92,8 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # (within the application controller) to return the currently logged in user.
-  config.current_user_method = :current_admin_user
+  #コメントアウトする
+  #config.current_user_method = :current_admin_user
 
   # == Logging Out
   #
@@ -128,7 +129,8 @@ ActiveAdmin.setup do |config|
   # config.comments = false
   #
   # You can change the name under which comments are registered:
-  # config.comments_registration_name = 'AdminComment'
+  # admincommentを有効にする
+  config.comments_registration_name = 'AdminComment'
   #
   # You can change the order for the comments and you can change the column
   # to be used for ordering:
@@ -347,7 +349,7 @@ ActiveAdmin.setup do |config|
   # config.current_user_method = :current_admin_user         # ログインユーザー情報を取得するメソッド ( concerns に追加するメソッド )
   # config.logout_link_path = :destroy_admin_session_path    # ログアウト時のパス 新たに定義する routes
   # config.logout_link_method = :delete                      # ログアウト時の METHOD を DELETE へ
-  
+
 end
 
 

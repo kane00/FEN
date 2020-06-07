@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_06_131431) do
+ActiveRecord::Schema.define(version: 2020_06_07_032722) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -36,6 +36,114 @@ ActiveRecord::Schema.define(version: 2020_06_06_131431) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "admins", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "end_user_id"
+    t.integer "item_id"
+    t.text "comment_text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "end_users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "end_user_name"
+    t.integer "area"
+    t.boolean "user_status", default: true, null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_end_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_end_users_on_reset_password_token", unique: true
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "genre_name"
+    t.boolean "genre_status", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.integer "end_user_id"
+    t.integer "genre_id"
+    t.integer "unit_id"
+    t.string "item_name"
+    t.string "image"
+    t.string "maker"
+    t.integer "retail_price"
+    t.text "remark"
+    t.boolean "item_status", default: true
+    t.boolean "confirm_status", default: false, null: false
+    t.integer "nutrients_calorie"
+    t.decimal "nutrients_protein", precision: 10, scale: 1
+    t.decimal "nutrients_lipid", precision: 10, scale: 1
+    t.decimal "nutrients_carbohydrate", precision: 10, scale: 1
+    t.decimal "nutrients_salt", precision: 10, scale: 2
+    t.decimal "nutrients_sodium", precision: 10, scale: 1
+    t.decimal "nutrients_potassium", precision: 10, scale: 1
+    t.decimal "nutrients_calcium", precision: 10, scale: 1
+    t.decimal "nutrients_magnesium", precision: 10, scale: 1
+    t.decimal "nutrients_rin", precision: 10, scale: 1
+    t.decimal "nutrients_iron", precision: 10, scale: 3
+    t.decimal "nutrients_zinc", precision: 10, scale: 3
+    t.decimal "nutrients_copper", precision: 10, scale: 3
+    t.decimal "nutrients_manganese", precision: 10, scale: 3
+    t.decimal "nutrients_lodine", precision: 10, scale: 1
+    t.decimal "nutrients_selenium", precision: 10, scale: 1
+    t.decimal "nutrients_chromium", precision: 10, scale: 1
+    t.decimal "nutrients_molybdenum", precision: 10, scale: 1
+    t.decimal "nutrients_vitamin_a", precision: 10, scale: 1
+    t.decimal "nutrients_β_carotene", precision: 10, scale: 1
+    t.decimal "nutrients_vitamin_d", precision: 10, scale: 2
+    t.decimal "nutrients_vitamin_e", precision: 10, scale: 2
+    t.decimal "nutrients_vitamin_k", precision: 10, scale: 1
+    t.decimal "nutrients_vitamin_b1", precision: 10, scale: 3
+    t.decimal "nutrients_vitamin_b2", precision: 10, scale: 3
+    t.decimal "nutrients_niacin", precision: 10, scale: 2
+    t.decimal "nutrients_vitmain_b6", precision: 10, scale: 3
+    t.decimal "nutrients_vitamin_b12", precision: 10, scale: 2
+    t.decimal "nutrients_folic_acid", precision: 10, scale: 1
+    t.decimal "nutrients_pantothenic_acid", precision: 10, scale: 3
+    t.decimal "nutrients_biotin", precision: 10, scale: 2
+    t.decimal "nutrients_vitamin_c", precision: 10, scale: 1
+    t.decimal "nutrients_saturated_fatty_acid", precision: 10, scale: 3
+    t.decimal "nutrients_polyunsaturated_fatty_acid", precision: 10, scale: 3
+    t.decimal "nutrients_monounsaturated_fatty_acid", precision: 10, scale: 3
+    t.decimal "nutrients_cholesterol", precision: 10, scale: 3
+    t.decimal "nutrients_soluble_dietary_fiber", precision: 10, scale: 2
+    t.decimal "nutrients_insoluble_dietary_fiber", precision: 10, scale: 2
+    t.decimal "nutrients_dietary_fiber", precision: 10, scale: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "units", force: :cascade do |t|
+    t.string "unit_name"
+    t.boolean "unit_status", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
