@@ -25,11 +25,11 @@
         <ul class="nav navbar-nav navbar-right" style="font-size: 16px">
           <!-- 会員ログイン後 -->
           <% if end_user_signed_in? %>
-            <li class="user" style="margin-right: 30px">ようこそ、　<%#= current_end_user.family_name_kanji %><%#= current_end_user.first_name_kanji %>　さん！</li>
+            <li class="user" style="margin-right: 30px">ようこそ、　<%= current_end_user.end_user_name %>　さん！</li>
             <li><%= link_to "top", root_path %></li>
             <li><%= link_to "マイページ", end_users_user_path(current_end_user.id) %></li>
-            <li><%= link_to "食材一覧", root_path %></li>
-            <li><%= link_to "食材検索", root_path %></li>
+            <li><%= link_to "商品一覧", end_users_items_path %></li>
+            <li><%= link_to "商品検索", end_users_search_path %></li>
             <li><%= link_to "ログアウト", destroy_end_user_session_path, method: :delete %></li>
 
           <!-- 非ログイン -->

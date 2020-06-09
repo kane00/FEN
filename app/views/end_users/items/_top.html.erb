@@ -1,0 +1,13 @@
+<div>
+	<ul>
+		<!-- list-style: none;で「・」が消える、ついでにstatus=falseも -->
+		<li style="list-style: none;">食品分類で絞り込む</li>
+		<% genres.each do |genre| %>
+			<li style="list-style: none;">
+				<% if genre.genre_status == true %>
+  				<%= link_to genre.genre_name, end_users_search_path(genre_id: genre.id)  %>
+  				<% end %>
+            </li>
+        <% end %>
+  	</ul>
+</div>

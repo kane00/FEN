@@ -1,6 +1,7 @@
 class EndUsers::ItemsController < ApplicationController
 
 def top
+	@genres = Genre.all
 end
 
 def about
@@ -17,6 +18,7 @@ def create
 end
 
 def index
+	@genres = Genre.all
 end
 
 
@@ -43,6 +45,12 @@ def comment_all
 end
 
 def search
+	@genres = Genre.all 	#左のジャンル用
+	if params[:genre_id]	#genre_idもっていたら
+      @genre = Genre.find(params[:genre_id])
+    else
+
+    end
 end
 
 end
