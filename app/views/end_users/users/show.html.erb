@@ -1,0 +1,71 @@
+<div class="container">
+ <div class="row">
+  <div class=""></div>
+  <div class="text-center" style="background-color: #eeeeee">
+   <h2>マイページ</h2>
+  </div>
+ </div>
+
+ <div style="padding-bottom: 10px; margin-top: 30px;">
+ <table>
+  <tr>
+   <th>
+    <div style="padding-right: 20px;">
+	   <h3><strong>登録情報</strong></h3>
+    </div>
+   </th>
+   <td>
+	 <div style="padding-right: 10px;">
+		<%= link_to "編集する", edit_end_users_user_path(current_end_user.id), class: "btn btn-primary" %>
+	</div>
+   </td>
+   <td><button type="button" class="btn btn-primary btn-none" style="width: 200px;">パスワードを変更する</button></td>
+  </tr>
+ </table>
+</div>
+
+<%= flash[:notice] %>
+
+<div class="row">
+ <div>
+	<table class="table table-bordered end-user-mypage-table">
+		<tr>
+			 <th>ユーザー名</th>
+			 <td><%= current_end_user.end_user_name %></td>
+		</tr>
+
+		<tr>
+			<th>メールアドレス</th>
+       		<td><%= current_end_user.email %></td>
+    	</tr>
+
+    	<tr>
+			<th>お住まいの地域</th>
+			<td><%= current_end_user.area %></td>
+	  	</tr>
+    </table>
+ </div>
+</div>
+
+<table style="margin-bottom: 30px;">
+ <tr>
+  <th><h4><strong>お気に入りの商品</strong></h4></th>
+  <td>
+   <div style="padding-left: 20px;">
+  	<%= link_to "一覧を見る" %>
+    </div>
+   </td>
+ </tr>
+
+ <div style="margin-top: 20px;">
+ <tr>
+  <th><h4><strong>投稿した商品</strong></h4></th>
+  <td>
+   <div style="padding-left: 20px;">
+   <%= link_to "一覧を見る" %>
+   </div>
+  </td>
+ </tr>
+ </div>
+</table>
+</div>
