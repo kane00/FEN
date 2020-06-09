@@ -15,4 +15,6 @@ ActiveAdmin.register Genre do
   #   permitted
   # end
   
+  permit_params :genre_name, :genre_status
+
 end

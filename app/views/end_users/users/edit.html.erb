@@ -22,7 +22,7 @@ editページだよ
   </div>
 
   <div>
- 	<%= f.hidden_field :user_status, :value => true %>
+ 	  <%= f.hidden_field :user_status, :value => true %>
   </div>
 
   <div class="actions">
@@ -37,4 +37,5 @@ editページだよ
        		<%= f.submit "退会する", method: :patch, data: {confirm: "削除しますか？"}, class: "btn btn-danger" %>  
        		<%#= f.hidden_field :user_status, :value => false %>   
     	</div>
-	<% end %>
+  <% end %>
+<% end %>

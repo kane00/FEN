@@ -15,6 +15,7 @@ before_action :configure_permitted_parameters, if: :devise_controller?
 
   # ログアウト後のリダイレクト先
   def after_sign_out_path_for(resource)
+    root_path
   end
 
   # 新規登録のパラメータ
