@@ -4,11 +4,11 @@ searchページです
 <% if @genre == nil %>
 	<h2>検索ページ</h2>
 	<h4>検索フォームをつくる</h4>
-	<%= render 'end_users/items/top', genres: @genres %>
+	<%= render 'end_users/items/genre', genres: @genres %>
 
 <!-- genreがparameterをもっていたら(ジャンルから飛んできたら)こちらを開く -->
 <% else %>
 	<h2>「<%= @genre.genre_name %>」で登録されている商品</h2>
-	<h4>全= @items.count %>件</h4>
-	<%= render 'end_users/items/top', genres: @genres %>
+	全<%= Item.all.count %>件
+	<%= render 'end_users/items/genre', genres: @genres %>
 <% end %>
