@@ -1,0 +1,59 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+
+.item-list {
+    width: 200px;
+    margin: auto;
+    padding: 0;
+}
+.item-list li {
+    list-style: none;
+    background-color: #bbbbbb;
+    margin-top: 10px;
+    text-align: center;
+    border-radius: 4px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 13px;
+}
+.item-list li.is-hidden {
+    opacity: 0;
+    height: 0;
+    margin: 0;
+}
+
+.more {
+    text-align: center;
+    margin-top: 20px;
+}
+.item-list button {
+    background: #bbdeff;         /* 背景の色 */
+    border: none;         /* ボタン周りの枠線 */
+    cursor: pointer;         /*  */
+    outline: none;         /* クリック後の周りの線 */
+    padding: 0px;         /* 文字の周りの余白 */
+    height: 32px;         /* 縦 */
+    width: 120px;         /* 横幅 */
+    border-radius: 16px;         /* 角の丸み */
+    /* box-shadow: 3px 3px 1px #aaaaaa;   影の設定 */
+}
+.item-list button:hover {
+    background: #bbdeff;         /* 背景の色 */
+    opacity: 0.8;         /* カーソル時透明度 */
+}
