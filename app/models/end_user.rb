@@ -18,6 +18,8 @@ class EndUser < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :items, dependent: :destroy
 
+  
+
   # 退会ユーザーはログインできなくする user_statusをもってくる
   def active_for_authentication?
     super && (self.user_status)

@@ -26,7 +26,7 @@ editページだよ
   </div>
 
   <div class="actions">
-    <%= f.submit '編集内容を保存する', class: "btn btn-primary" %>
+    <%= f.submit '編集内容を保存する', class: "btn btn-primary", name: 'save' %>
   </div>
 
   <%= link_to "戻る", end_users_user_path(current_end_user.id) %>

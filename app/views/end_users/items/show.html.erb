@@ -15,6 +15,19 @@ show、詳細ページだよ
 <div>
 	ジャンル：<%= link_to @item.genre.genre_name, end_users_search_path %>
 	自由タグ：タグのgem作成する
+	<%# count = 0 %>
+<%# tag_list.each do |tag| %>
+	<%# if count == 2 %>
+		
+
+		<%# count = 0 %>
+	<%# end %>
+	<%#= link_to homes_path(tag_name: tag), style:"text-decoration: none;" do %> 
+   		<%#= tag %>
+   	<%# end %>
+   	<%# count = count + 1 %>
+<%# end %>
+
 	備考：<%= @item.remark %>
 	栄養量：[<%= @item.unit.unit_name %>]
 	<% if @item.unit.unit_name == '100gあたり' %>
