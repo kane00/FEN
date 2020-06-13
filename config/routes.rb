@@ -13,13 +13,15 @@ Rails.application.routes.draw do
 
   # エンドユーザー側/商品
   namespace :end_users do
-  	resources :items
-
     get 'search' => 'items#search'
-    get 'items/:id/comment_all' => 'items#comment_all', as: 'items_comment_all'
-    get 'items/new/new_confirm' => 'items#new_confirm', as: 'items_new_confirm'
-    get 'items/:id/edit_confirm' => 'items#edit_confirm', as: 'items_edit_confirm'
-    get 'understand' => 'items#understand'
+    resources :items do
+      collection do
+        post 'new_confirm' => 'items#new_confirm', as: 'new_confirm'
+        get 'understand' => 'items#understand'
+        get ':id/comment_all' => 'items#comment_all', as: 'comment_all'
+        post ':id/edit_confirm' => 'items#edit_confirm', as: 'edit_confirm'
+      end
+    end
   end
 
   # エンドユーザー側/コメント

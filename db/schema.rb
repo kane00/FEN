@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_10_054747) do
+ActiveRecord::Schema.define(version: 2020_06_12_024553) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -132,6 +132,7 @@ ActiveRecord::Schema.define(version: 2020_06_10_054747) do
     t.decimal "nutrients_dietary_fiber", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image_id"
   end
 
   create_table "taggings", force: :cascade do |t|
