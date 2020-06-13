@@ -80,3 +80,9 @@ gem "jquery-rails"
 
 # タグ機能
 gem 'acts-as-taggable-on', '~> 6.0'
+
+# デプロイ用
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
