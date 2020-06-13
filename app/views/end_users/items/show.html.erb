@@ -5,7 +5,7 @@ show、詳細ページだよ
 
 	販売メーカー：<%= @item.maker %>
 	希望小売価格：<%= @item.retail_price %>円
-	<%= attachment_image_tag(@item, :image, :fill, 300, 300, fallback: "noimage.png", size: "300x300") %> 
+	<%= attachment_image_tag(@item, :image, :fill, 300, 300, fallback: "noimage.png", size: "300x300") %>
 	いいね機能(仮)
 	コメント機能
 	<!-- 編集依頼は投稿者のみ表示、if文は後ほど書く -->
