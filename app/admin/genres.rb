@@ -15,4 +15,28 @@ ActiveAdmin.register Genre do
   #   permitted
   # end
   
+  permit_params :genre_name, :genre_status
+
+  index do
+    selectable_column
+    id_column
+    column :genre_name
+    column :genre_status
+    column '商品数' do |genre|
+      genre.items.count
+    end
+    actions
+  end
+
+  show do |genre|
+    attributes_table(*genre.class.columns.collect { |column| column.name.to_sym })
+    panel "商品一覧" do
+      table_for genre.items do
+        column :image
+        column :item_name
+      end
+    end
+    active_admin_comments
+  end
+
 end

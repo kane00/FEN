@@ -1,0 +1,254 @@
+新規投稿依頼ページですよ
+
+<h2>新規投稿</h2>
+<%= flash[:notice] %>
+
+<%= form_for @item, url: {action: 'new_confirm'} do |f| %> 
+	
+	<div class="field1">
+		<!-- ユーザー情報はログインしているcurrent_end_user.idを入れる -->
+	    <%= f.hidden_field :end_user_id, :value => current_end_user.id  %>
+	</div>
+
+
+	<div class="field1">
+		<%= f.label :item_name, "商品名" %>
+	    <%= f.text_field :item_name %>
+	</div>
+
+ 	<div class="field1">
+	    <%= f.label :genre_id, "ジャンル" %>
+	    <%= f.select :genre_id, Genre.all.map{|o| [o.genre_name, o.id]} %>
+ 	</div>
+
+ 	<div class="field1">
+	     <%= f.label :unit_id, "ユニット" %>
+	    <!-- f.collection_select(保存されるカラム名, オブジェクトの配列, カラムに保存される項目, 選択肢に表示されるカラム名, {オプション}, {htmlオプション} ) -->
+	    <%#= f.collection_select :unit_id, @units, :id, :unit_name %>
+	        <%= f.select :unit_id, Unit.all.map{|o| [o.unit_name, o.id]} %>
+	</div>
+
+	<div class="field1">
+		<%= f.label :tag_list, 'タグをスペース区切りで入力' %>
+		<%= text_field_tag 'item[tag_list]', @item.tag_list, :class => "form-control" %>
+	</div>
+
+	<div class="field1">
+		写真:
+		<%= attachment_image_tag @item.image, :image, :limit, 300, 300, fallback: "noimage.png",size: "300x300" %>
+		<%= f.attachment_field :image %>
+	</div>
+
+	<div class="field1">
+		<%= f.label :maker, "販売メーカー" %>
+	    <%= f.text_field :maker %>
+	</div>
+
+	<div class="field1">
+		<%= f.label :retail_price, "小売価格" %>
+	    <%= f.text_field :retail_price %>
+	</div>
+
+	<div class="field1">
+		<%= f.label :remark, "備考" %>
+	    <%= f.text_field :remark %>
+	</div>
+
+	<div class="field1">
+		<!-- アイテムステータスはデフォルト値をそのままもってくる -->
+		<%= f.hidden_field :item_status %>
+	</div>
+
+	<div class="field1">
+		<!-- アイテムステータスはデフォルト値をそのままもってくる -->
+		<%= f.hidden_field :confirm_status %>
+	</div>
+
+	<div class="field1">
+	    <%= f.label :nutrients_calorie, "エネルギー" %>
+	    <%= f.text_field :nutrients_calorie %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_protein, "たんぱく質" %>
+	    <%= f.text_field :nutrients_protein %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_lipid, "脂質" %>
+	    <%= f.text_field :nutrients_lipid %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_carbohydrate, "炭水化物" %>
+	    <%= f.text_field :nutrients_carbohydrate %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_salt, "食塩相当量" %>
+	    <%= f.text_field :nutrients_salt %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_sodium, "ナトリウム" %>
+	    <%= f.text_field :nutrients_sodium %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_potassium, "カリウム" %>
+	    <%= f.text_field :nutrients_potassium %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_calcium, "カルシウム" %>
+	    <%= f.text_field :nutrients_calcium %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_magnesium, "マグネシウム" %>
+	    <%= f.text_field :nutrients_magnesium %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_rin, "リン" %>
+	    <%= f.text_field :nutrients_rin %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_iron, "鉄" %>
+	    <%= f.text_field :nutrients_iron %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_zinc, "亜鉛" %>
+	    <%= f.text_field :nutrients_zinc %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_copper, "銅" %>
+	    <%= f.text_field :nutrients_copper %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_manganese, "マンガン" %>
+	    <%= f.text_field :nutrients_manganese %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_lodine, "ヨウ素" %>
+	    <%= f.text_field :nutrients_lodine %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_selenium, "セレン" %>
+	    <%= f.text_field :nutrients_selenium %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_chromium, "モリブデン" %>
+	    <%= f.text_field :nutrients_chromium %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_vitamin_a, "ビタミンA" %>
+	    <%= f.text_field :nutrients_vitamin_a %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_β_carotene, "βカロテン" %>
+	    <%= f.text_field :nutrients_β_carotene %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_vitamin_d, "ビタミンD" %>
+	    <%= f.text_field :nutrients_vitamin_d %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_vitamin_e, "ビタミンE" %>
+	    <%= f.text_field :nutrients_vitamin_e %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_vitamin_k, "ビタミンK" %>
+	    <%= f.text_field :nutrients_vitamin_k %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_vitamin_b1, "ビタミンB1" %>
+	    <%= f.text_field :nutrients_vitamin_b1 %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_vitamin_b2, "ビタミンB2" %>
+	    <%= f.text_field :nutrients_vitamin_b2 %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_niacin, "ナイアシン" %>
+	    <%= f.text_field :nutrients_niacin %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_vitmain_b6, "ビタミンB6" %>
+	    <%= f.text_field :nutrients_vitmain_b6 %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_vitamin_b12, "ビタミンB12" %>
+	    <%= f.text_field :nutrients_vitamin_b12 %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_folic_acid, "葉酸" %>
+	    <%= f.text_field :nutrients_folic_acid %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_pantothenic_acid, "パントテン酸" %>
+	    <%= f.text_field :nutrients_pantothenic_acid %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_biotin, "ビタミンC" %>
+	    <%= f.text_field :nutrients_biotin %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_saturated_fatty_acid, "飽和脂肪酸" %>
+	    <%= f.text_field :nutrients_saturated_fatty_acid %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_polyunsaturated_fatty_acid, "一価不飽和脂肪酸" %>
+	    <%= f.text_field :nutrients_polyunsaturated_fatty_acid %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_monounsaturated_fatty_acid, "多価不飽和脂肪酸" %>
+	    <%= f.text_field :nutrients_monounsaturated_fatty_acid %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_cholesterol, "コレステロール" %>
+	    <%= f.text_field :nutrients_cholesterol %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_soluble_dietary_fiber, "水溶性食物繊維" %>
+	    <%= f.text_field :nutrients_soluble_dietary_fiber %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_insoluble_dietary_fiber, "不溶性食物繊維" %>
+	    <%= f.text_field :nutrients_insoluble_dietary_fiber %>
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_dietary_fiber, "食物繊維総量" %>
+	    <%= f.text_field :nutrients_dietary_fiber %>
+ 	</div>
+
+    <%= f.submit "確認画面へ" %>
+ 
+<% end %>

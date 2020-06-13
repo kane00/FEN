@@ -1,0 +1,11 @@
+understandページ
+
+ありがとうございました。商品が<%= flash[:notice] %>されました。
+管理者が確認すると管理者確認ボタンが表示されます。
+
+
+続けて商品を登録する
+<%= link_to "商品新規登録", new_end_users_item_path, class: 'btn btn-default' %>
+
+商品一覧を確認する
+<%= link_to "商品一覧", end_users_items_path, class: 'btn btn-default' %>

@@ -7,9 +7,50 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script><!-- jquery読み込み用 -->
   </head>
 
-  <body>
+<body>
+    <!-- ヘッダー部分 -->
+    <nav class="navbar navbar-inverse" style="background-color: #eeeeee">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#gnavi">
+          <span class="sr-only">メニュー</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+
+      <nav id="" class="">
+        <ul class="nav navbar-nav navbar-right" style="font-size: 16px">
+          <!-- 会員ログイン後 -->
+          <% if end_user_signed_in? %>
+            <li class="user" style="margin-right: 30px">ようこそ、　<%= current_end_user.end_user_name %>　さん！</li>
+            <li><%= link_to "top", root_path %></li>
+            <li><%= link_to "マイページ", end_users_user_path(current_end_user.id) %></li>
+            <li><%= link_to "商品一覧", end_users_items_path %></li>
+            <li><%= link_to "商品検索", end_users_search_path %></li>
+            <li><%= link_to "ログアウト", destroy_end_user_session_path, method: :delete %></li>
+
+          <!-- 非ログイン -->
+          <% else %>
+            <li><%= link_to "FENとは?", about_path %></li>
+            <li><%= link_to "新規登録", new_end_user_registration_path, data: {"turbolinks" => false} %></li>
+            <li><%= link_to "ログイン", new_end_user_session_path %></li>
+          <% end %>
+        </ul>
+      </nav>
+    </nav>
+
+    <!-- viewページ -->
     <%= yield %>
+    <!-- フッター部分 -->
+    <footer class="" style="background-color: #eeeeee">
+      <div style="text-align: center;">
+        <span>(C). All Rights Reserved.</span>
+      </div>
+    </footer>
+    <script src="more_show_script_4.js"></script><!-- jsファイル表示 -->
   </body>
 </html>

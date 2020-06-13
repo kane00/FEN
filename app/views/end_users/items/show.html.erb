@@ -1,0 +1,86 @@
+show、詳細ページだよ
+
+<div>
+	<h2><%= @item.item_name %></h2>
+
+	販売メーカー：<%= @item.maker %>
+	希望小売価格：<%= @item.retail_price %>円
+	<%= attachment_image_tag(@item, :image, :fill, 300, 300, fallback: "noimage.png", size: "300x300") %> 
+	いいね機能(仮)
+	コメント機能
+	<!-- 編集依頼は投稿者のみ表示、if文は後ほど書く -->
+	<%= link_to '編集依頼する', edit_end_users_item_path(@item.id) %>
+</div>
+
+<div>
+	ジャンル：<%= link_to @item.genre.genre_name, end_users_search_path %>
+	自由タグ：タグのgem作成する
+	<%# count = 0 %>
+<%# tag_list.each do |tag| %>
+	<%# if count == 2 %>
+		
+
+		<%# count = 0 %>
+	<%# end %>
+	<%#= link_to homes_path(tag_name: tag), style:"text-decoration: none;" do %> 
+   		<%#= tag %>
+   	<%# end %>
+   	<%# count = count + 1 %>
+<%# end %>
+
+	備考：<%= @item.remark %>
+	栄養量：[<%= @item.unit.unit_name %>]
+	<% if @item.unit.unit_name == '100gあたり' %>
+		<div id="number_list" class="item-list">
+		<ul>
+			<li>エネルギー：　<%= @item.nutrients_calorie %>　kcal</li>
+			<li>たんぱく質：　<%= @item.nutrients_protein %>　g</li>
+			<li>脂質： <%= @item.nutrients_lipid %>　g</li>
+			<li>炭水化物： <%= @item.nutrients_carbohydrate %>　g</li>
+			<li>塩分： <%= @item.nutrients_salt %>　g</li>
+			<li>ナトリウム：　<%= @item.nutrients_sodium %>　g</li>
+			<li>カリウム：　<%= @item.nutrients_potassium %>　g</li>
+			<li>マグネシウム：　<%= @item.nutrients_magnesium %>　g</li>
+			<li>リン：　<%= @item.nutrients_rin %>　g</li>
+			<li>鉄：　<%= @item.nutrients_iron %>　g</li>
+			<li>亜鉛：　<%= @item.nutrients_zinc %>　g</li>
+			<li>銅：　<%= @item.nutrients_copper %>　g</li>
+			<li>マンガン：　<%= @item.nutrients_manganese %>　g</li>
+			<li>ヨウ素：　<%= @item.nutrients_lodine %>　g</li>
+			<li>セレン：　<%= @item.nutrients_selenium %>　g</li>
+			<li>クロム：　<%= @item.nutrients_chromium %>　g</li>
+			<li>モリブデン：　<%= @item.nutrients_molybdenum %>　g</li>
+			<li>ビタミンA：　<%= @item.nutrients_vitamin_a %>　g</li>
+			<li>βカロテン：　<%= @item.nutrients_β_carotene %>　g</li>
+			<li>ビタミンD：　<%= @item.nutrients_vitamin_d %>　g</li>
+			<li>ビタミンE：　<%= @item.nutrients_vitamin_e %>　g</li>
+			<li>ビタミンK：　<%= @item.nutrients_vitamin_k %>　g</li>
+			<li>ビタミンB1：　<%= @item.nutrients_vitamin_b1 %>　g</li>
+			<li>ビタミンB2：　<%= @item.nutrients_vitamin_b2 %>　g</li>
+			<li>ナイアシン：　<%= @item.nutrients_niacin %>　g</li>
+			<li>ビタミンB6：　<%= @item.nutrients_vitmain_b6 %>　g</li>
+			<li>ビタミンB12：　<%= @item.nutrients_vitamin_b12 %>　g</li>
+			<li>葉酸：　<%= @item.nutrients_folic_acid %>　g</li>
+			<li>パントテン酸：　<%= @item.nutrients_pantothenic_acid %>　g</li>
+			<li>ビオチン：　<%= @item.nutrients_biotin %>　g</li>
+			<li>ビタミンC：　<%= @item.nutrients_vitamin_c %>　g</li>
+			<li>飽和脂肪酸：　<%= @item.nutrients_saturated_fatty_acid %>　g</li>
+			<li>一価不飽和脂肪酸：　<%= @item.nutrients_polyunsaturated_fatty_acid %>　g</li>
+			<li>多価不飽和脂肪酸：　<%= @item.nutrients_monounsaturated_fatty_acid %>　g</li>
+			<li>コレステロール：　<%= @item.nutrients_cholesterol %>　g</li>
+			<li>水溶性食物繊維：　<%= @item.nutrients_soluble_dietary_fiber %>　g</li>
+			<li>不溶性食物繊維：　<%= @item.nutrients_insoluble_dietary_fiber %>　g</li>
+			<li>食物繊維総量：　<%= @item.nutrients_dietary_fiber %>　g</li>
+		</ul>
+		
+		<button id="more_btn">詳細を見る</button>
+    	<button id="close_btn">表示数を戻す</button>
+  		
+  	</div>
+	<% else %>
+		100gあたり量で計算する
+	<% end %>
+
+
+
+</div>

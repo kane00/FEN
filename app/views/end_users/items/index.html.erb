@@ -1,0 +1,10 @@
+index、一覧ページだよ
+
+
+
+<h2>全商品一覧</h2>
+<h4>全<%= Item.all.count %>件</h4>
+
+<%= render 'end_users/templetes/itemfind', items: @items %>
+
+<%= render 'end_users/templetes/genre', genres: @genres %>

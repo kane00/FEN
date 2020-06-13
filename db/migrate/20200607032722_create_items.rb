@@ -22,7 +22,7 @@ class CreateItems < ActiveRecord::Migration[5.2]
     	t.decimal :nutrients_salt, precision: 10, scale: 2			#食塩相当量
     	t.decimal :nutrients_sodium, precision: 10, scale: 1			#ナトリウム
     	t.decimal :nutrients_potassium, precision: 10, scale: 1			#カリウム
-    	t.decimal :nutrients_calcium, precision: 10, scale: 1			#カルシウム    	
+    	t.decimal :nutrients_calcium, precision: 10, scale: 1			#カルシウム
     	t.decimal :nutrients_magnesium, precision: 10, scale: 1			#マグネシウム
     	t.decimal :nutrients_rin, precision: 10, scale: 1			#リン
     	t.decimal :nutrients_iron, precision: 10, scale: 3			#鉄

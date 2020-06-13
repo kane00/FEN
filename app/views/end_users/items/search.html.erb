@@ -1,0 +1,23 @@
+searchページです
+
+<!-- genreに何も含まれていない時は検索ページを表示する -->
+<% if @genre == nil %>
+	<h2>検索ページ</h2>
+	<h4>検索フォームをつくる</h4>
+	<%= render 'end_users/templetes/genre', genres: @genres %>
+
+<!-- genreがparameterをもっていたら(ジャンルから飛んできたら)こちらを開く -->
+<% else %>
+	<h2>「<%= @genre.genre_name %>」で登録されている商品</h2>
+	全<%= @items.count %>件
+
+	<% if @items.count == 0 %>
+	商品が見つかりませんでした。
+	<%= link_to "商品を作る", new_end_users_item_path %>
+	<% end %>
+	
+	<%= render 'end_users/templetes/genre', genres: @genres %>
+
+	<%= render 'end_users/templetes/itemfind', items: @items %>
+
+<% end %>

@@ -64,7 +64,19 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # 管理者
 gem 'activeadmin'
+# ユーザー側ログイン機能
 gem 'devise'
 
 # 日本語化
 gem 'rails-i18n'
+
+# 画像投稿用
+gem "refile", require: "refile/rails", github: 'manfe/refile'
+gem "refile-mini_magick"
+
+# デザイン用
+gem 'bootstrap-sass', '~> 3.3.6'
+gem "jquery-rails"
+
+# タグ機能
+gem 'acts-as-taggable-on', '~> 6.0'
