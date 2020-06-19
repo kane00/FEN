@@ -61,3 +61,4 @@
 #   }
 
 server '54.168.130.207', user: 'ec2-user', roles: %w{app web db}
+

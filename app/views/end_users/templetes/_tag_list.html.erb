@@ -1,0 +1,11 @@
+<div>
+	<ul>
+		<!-- list-style: none;で「・」消す -->
+		<li style="list-style: none;">人気タグで絞り込む</li>
+		<% tags.each do |tag| %>
+			<li style="list-style: none;">
+				<span><%= link_to "##{tag.name}", end_users_tag_path(tag.name) %></span>
+			</li>
+		<% end %>
+	</ul>
+</div>

@@ -205,7 +205,7 @@ ja:
         other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした:"
 
 
-  # i18n(多言語化対応)
+  # i18n(日本語化対応)
   activerecord:
     errors:
       messages:
@@ -414,3 +414,12 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+
+  # paginate日本語
+  views:
+    pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前へ"
+      next: "次へ &rsaquo;"
+      truncate: "..."

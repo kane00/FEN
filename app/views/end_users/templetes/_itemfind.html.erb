@@ -1,8 +1,132 @@
-<% items.each do |item| %>
-	<div>
-        <%= link_to end_users_item_path(item.id) do %>
-            <%= attachment_image_tag(item, :image, :fill, 100, 100, fallback: "noimage.png",size: "100x100") %>
-        <% end %>
-        <%= link_to item.item_name, end_users_item_path(item.id) %>
-    </div>
+<% if params[:q] != nil %>		<!-- :qのパラメータをもっているかいないか -->
+	<% if items.count != 0 %>		<!-- :qのパラメータをもっている && 商品が1以上ある -->
+		<div class="scroll-table">
+			<div style="float: left"><%= paginate items %></div>
+			<table>
+				<thead>
+					<tr>
+						<th><%= sort_link(@q, :item_name, "商品名") %></th>
+						<th>画像</th>
+						<th><%= sort_link(@q, :nutrients_calorie, "エネルギー") %></th>
+						<th><%= sort_link(@q, :nutrients_protein, "たんぱく質") %></th>
+						<th><%= sort_link(@q, :nutrients_lipid, "脂質") %></th>
+						<th><%= sort_link(@q, :nutrients_carbohydrate, "炭水化物") %></th>
+						<th><%= sort_link(@q, :nutrients_salt, "塩分") %></th>
+						<th><%= sort_link(@q, :nutrients_sodium, "ナトリウム") %></th>
+						<th><%= sort_link(@q, :nutrients_potassium, "カリウム") %></th>
+						<th><%= sort_link(@q, :nutrients_calcium, "マグネシウム") %></th>
+						<th><%= sort_link(@q, :nutrients_magnesium, "マグネシウム") %></th>
+						<th><%= sort_link(@q, :nutrients_rin, "リン") %></th>
+						<th><%= sort_link(@q, :nutrients_iron, "鉄") %></th>
+						<th><%= sort_link(@q, :nutrients_zinc, "亜鉛") %></th>
+						<th><%= sort_link(@q, :nutrients_copper, "銅") %></th>
+						<th><%= sort_link(@q, :nutrients_manganese, "マンガン") %></th>
+						<th><%= sort_link(@q, :nutrients_lodine, "ヨウ素") %></th>
+						<th><%= sort_link(@q, :nutrients_selenium, "セレン") %></th>
+						<th><%= sort_link(@q, :nutrients_chromium, "クロム") %></th>
+						<th><%= sort_link(@q, :nutrients_molybdenum, "モリブデン") %></th>
+						<th><%= sort_link(@q, :nutrients_vitamin_a, "ビタミンA") %></th>
+						<th><%= sort_link(@q, :nutrients_β_carotene, "βカロテン") %></th>
+						<th><%= sort_link(@q, :nutrients_vitamin_d, "ビタミンD") %></th>
+						<th><%= sort_link(@q, :nutrients_vitamin_e, "ビタミンE") %></th>
+						<th><%= sort_link(@q, :nutrients_vitamin_k, "ビタミンK") %></th>
+						<th><%= sort_link(@q, :nutrients_vitamin_b1, "ビタミンB1") %></th>
+						<th><%= sort_link(@q, :nutrients_vitamin_b2, "ビタミンB2") %></th>
+						<th><%= sort_link(@q, :nutrients_niacin, "ナイアシン") %></th>
+						<th><%= sort_link(@q, :nutrients_vitmain_b6, "ビタミンB6") %></th>
+						<th><%= sort_link(@q, :nutrients_vitamin_b12, "ビタミンB12") %></th>
+						<th><%= sort_link(@q, :nutrients_folic_acid, "葉酸") %></th>
+						<th><%= sort_link(@q, :nutrients_pantothenic_acid, "パントテン酸") %></th>
+						<th><%= sort_link(@q, :nutrients_biotin, "ビオチン") %></th>
+						<th><%= sort_link(@q, :nutrients_vitamin_c, "ビタミンC") %></th>
+						<th><%= sort_link(@q, :nutrients_saturated_fatty_acid, "飽和脂肪酸") %></th>
+						<th><%= sort_link(@q, :nutrients_polyunsaturated_fatty_acid, "一価不飽和脂肪酸") %></th>
+						<th><%= sort_link(@q, :nutrients_monounsaturated_fatty_acid, "多価不飽和脂肪酸") %></th>
+						<th><%= sort_link(@q, :nutrients_cholesterol, "コレステロール") %></th>
+						<th><%= sort_link(@q, :nutrients_soluble_dietary_fiber, "水溶性食物繊維") %></th>
+						<th><%= sort_link(@q, :nutrients_insoluble_dietary_fiber, "不溶性食物繊維") %></th>
+						<th><%= sort_link(@q, :nutrients_dietary_fiber, "食物繊維総量") %></th>
+						<th></th>
+					</tr>
+				</thead>
+				<% @items.each do |item| %>
+				<tbody>
+					<tr>
+						<td><%= link_to item.item_name, end_users_item_path(item.id), data: {"turbolinks" => false}  %></td>
+						<td><%= attachment_image_tag(item, :image, :fill, 50, 50, fallback: "noimage.png", size: "50x50") %></td>
+						<td><%= item.nutrients_calorie %></td>
+						<td><%= item.nutrients_calorie %></td>
+						<td><%= item.nutrients_lipid %></td>
+						<td><%= item.nutrients_carbohydrate %></td>
+						<td><%= item.nutrients_salt %></td>
+						<td><%= item.nutrients_sodium %></td>
+						<td><%= item.nutrients_potassium %></td>
+						<td><%= item.nutrients_calcium %></td>
+						<td><%= item.nutrients_magnesium %></td>
+						<td><%= item.nutrients_rin %></td>
+						<td><%= item.nutrients_iron %></td>
+						<td><%= item.nutrients_zinc %></td>
+						<td><%= item.nutrients_copper %></td>
+						<td><%= item.nutrients_manganese %></td>
+						<td><%= item.nutrients_lodine %></td>
+						<td><%= item.nutrients_selenium %></td>
+						<td><%= item.nutrients_chromium %></td>
+						<td><%= item.nutrients_molybdenum %></td>
+						<td><%= item.nutrients_vitamin_a %></td>
+						<td><%= item.nutrients_β_carotene %></td>
+						<td><%= item.nutrients_vitamin_d %></td>
+						<td><%= item.nutrients_vitamin_e %></td>
+						<td><%= item.nutrients_vitamin_k %></td>
+						<td><%= item.nutrients_vitamin_b1 %></td>
+						<td><%= item.nutrients_vitamin_b2 %></td>
+						<td><%= item.nutrients_niacin %></td>
+						<td><%= item.nutrients_vitmain_b6 %></td>
+						<td><%= item.nutrients_vitamin_b12 %></td>
+						<td><%= item.nutrients_folic_acid %></td>
+						<td><%= item.nutrients_pantothenic_acid %></td>
+						<td><%= item.nutrients_biotin %></td>
+						<td><%= item.nutrients_vitamin_c %></td>
+						<td><%= item.nutrients_saturated_fatty_acid %></td>
+						<td><%= item.nutrients_polyunsaturated_fatty_acid %></td>
+						<td><%= item.nutrients_monounsaturated_fatty_acid %></td>
+						<td><%= item.nutrients_cholesterol %></td>
+						<td><%= item.nutrients_soluble_dietary_fiber %></td>
+						<td><%= item.nutrients_insoluble_dietary_fiber %></td>
+						<td><%= item.nutrients_dietary_fiber %></td>
+					</tr>
+				</tbody>
+				<% end %>
+			</table>
+			<div style="float: right"><%= paginate items %></div>
+		</div>
+	<% else %>		<!-- :qのパラメータをもっている && 商品が0 -->
+		商品が見つかりませんでした。
+		<%= link_to "商品を登録", new_end_users_item_path, data: {"turbolinks" => false} %>
+	<% end %>
+<% else %>		<!-- :qのパラメータをもっていない -->
+	<% if items.count != 0 %>		<!-- :qのパラメータをもっていない && 商品が1以上ある -->
+		<div style="float: left"><%= paginate items %></div>
+		<div class="index-table">
+			<table>
+				<% items.each do |item| %>
+				    <tbody>
+				        <tr>
+				            <th rowspan="3"><%= attachment_image_tag(item, :image, :fill, 100, 100, fallback: "noimage.png", size: "100x100") %></th>
+				            <td style="padding-top: 10px;"><%= link_to item.item_name, end_users_item_path(item.id), data: {"turbolinks" => false}  %></td>
+				        </tr>
+				        <tr>
+				            <td>いいね数</td>
+				        </tr>
+						<tr>
+				            <td>更新日：<%= item.updated_at.strftime('%Y/%m/%d') %></td>
+				        </tr>
+				    </tbody>
+				<% end %>
+			</table>
+		</div>
+		<div><%= paginate items %></div>
+	<% else %>		<!-- :qのパラメータをもっていない && 商品が0 -->
+		商品が見つかりませんでした。
+		<%= link_to "商品を登録", new_end_users_item_path, data: {"turbolinks" => false} %>
+	<% end %>
 <% end %>

@@ -1,10 +1,20 @@
-index、一覧ページだよ
+<div class="container">
+	index、一覧ページだよ
+	<h2>商品一覧</h2>
+	<div class="row">
+		<div class="col-xs-2">
+			<%= render 'end_users/templetes/genre', genres: @genres %>
+		</div>
+		<div class="col-xs-10">
+			<h2>現在登録されている商品の数</h2>
+			<h4>全<%= @item.count %>件</h4>
+			<%= render 'end_users/templetes/itemfind', items: @items %>
+
+		</div>
+	</div>
+</div>
 
 
 
-<h2>全商品一覧</h2>
-<h4>全<%= Item.all.count %>件</h4>
 
-<%= render 'end_users/templetes/itemfind', items: @items %>
 
-<%= render 'end_users/templetes/genre', genres: @genres %>
