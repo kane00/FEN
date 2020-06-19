@@ -3,30 +3,31 @@ show、詳細ページだよ
 <div>
 	<h2><%= @item.item_name %></h2>
 
+	登録日：<%= @item.created_at.strftime('%Y/%m/%d') %>
+	更新日：<%= @item.updated_at.strftime('%Y/%m/%d') %>
+
+	<% if @item.confirm_status == false %>
+		<div style="text-decoration: none">未確認</div>
+	<% else %>
+		<div style="text-decoration: none">確認済み</div>
+	<% end %>
+
 	販売メーカー：<%= @item.maker %>
 	希望小売価格：<%= @item.retail_price %>円
-	<%= attachment_image_tag(@item, :image, :fill, 300, 300, fallback: "noimage.png", size: "300x300") %> 
+	<%= attachment_image_tag(@item, :image, :fill, 300, 300, fallback: "noimage.png", size: "300x300") %>
 	いいね機能(仮)
-	コメント機能
+	<% if @item.end_user_id == current_end_user.id %>
 	<!-- 編集依頼は投稿者のみ表示、if文は後ほど書く -->
-	<%= link_to '編集依頼する', edit_end_users_item_path(@item.id) %>
+		<%= link_to '編集依頼する', edit_end_users_item_path(@item.id) %>
+	<% end %>
 </div>
 
 <div>
 	ジャンル：<%= link_to @item.genre.genre_name, end_users_search_path %>
-	自由タグ：タグのgem作成する
-	<%# count = 0 %>
-<%# tag_list.each do |tag| %>
-	<%# if count == 2 %>
-		
-
-		<%# count = 0 %>
-	<%# end %>
-	<%#= link_to homes_path(tag_name: tag), style:"text-decoration: none;" do %> 
-   		<%#= tag %>
-   	<%# end %>
-   	<%# count = count + 1 %>
-<%# end %>
+	自由タグ：
+	<% @item.tags.each do |tag| %>
+        <span><%= link_to "##{tag}", "../tags/#{tag.name}" %></span>
+    <% end %>
 
 	備考：<%= @item.remark %>
 	栄養量：[<%= @item.unit.unit_name %>]
@@ -40,6 +41,7 @@ show、詳細ページだよ
 			<li>塩分： <%= @item.nutrients_salt %>　g</li>
 			<li>ナトリウム：　<%= @item.nutrients_sodium %>　g</li>
 			<li>カリウム：　<%= @item.nutrients_potassium %>　g</li>
+			<li>カルシウム：　<%= @item.nutrients_calcium %>　g</li>
 			<li>マグネシウム：　<%= @item.nutrients_magnesium %>　g</li>
 			<li>リン：　<%= @item.nutrients_rin %>　g</li>
 			<li>鉄：　<%= @item.nutrients_iron %>　g</li>
@@ -81,6 +83,29 @@ show、詳細ページだよ
 		100gあたり量で計算する
 	<% end %>
 
+</div>
 
+<div>
+	
+	<div style="">コメント一覧：<%= @item.comments.count %>件</div>
+	<% @item.comments.each do |comment| %>
+		<%= comment.end_user.end_user_name %>
+		<span><%= comment.created_at.strftime('%Y/%m/%d') %></span>
+		<%= comment.comment_text %>
+		<% if @comment.end_user_id == current_end_user.id %>
+		  <div>
+		    <%= link_to "削除", end_users_item_comment_path(@item.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn-sm btn-danger" %>
+		  </div>
+		<% end %>
+	<% end %>
 
+	<%= form_for [@item, @comment], url: end_users_item_comments_path(@item.id) do |f| %>
+	    <div class="row">
+	        <div class="col-sm-12">
+	            <%= f.text_area :comment_text, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+	        </div>
+	    </div>
+	    <%= f.submit "送信する", class: "btn btn-success default" %>
+
+	<% end %>
 </div>

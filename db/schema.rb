@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_12_024553) do
+ActiveRecord::Schema.define(version: 2020_06_18_024850) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -58,6 +58,13 @@ ActiveRecord::Schema.define(version: 2020_06_12_024553) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "contacts", force: :cascade do |t|
+    t.string "email"
+    t.text "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "end_users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -80,12 +87,18 @@ ActiveRecord::Schema.define(version: 2020_06_12_024553) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "inquiries", force: :cascade do |t|
+    t.string "name"
+    t.string "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "items", force: :cascade do |t|
     t.integer "end_user_id"
     t.integer "genre_id"
     t.integer "unit_id"
     t.string "item_name"
-    t.string "image"
     t.string "maker"
     t.integer "retail_price"
     t.text "remark"
@@ -96,40 +109,40 @@ ActiveRecord::Schema.define(version: 2020_06_12_024553) do
     t.decimal "nutrients_lipid", precision: 10, scale: 1
     t.decimal "nutrients_carbohydrate", precision: 10, scale: 1
     t.decimal "nutrients_salt", precision: 10, scale: 2
-    t.decimal "nutrients_sodium", precision: 10, scale: 1
-    t.decimal "nutrients_potassium", precision: 10, scale: 1
-    t.decimal "nutrients_calcium", precision: 10, scale: 1
-    t.decimal "nutrients_magnesium", precision: 10, scale: 1
-    t.decimal "nutrients_rin", precision: 10, scale: 1
-    t.decimal "nutrients_iron", precision: 10, scale: 3
-    t.decimal "nutrients_zinc", precision: 10, scale: 3
-    t.decimal "nutrients_copper", precision: 10, scale: 3
-    t.decimal "nutrients_manganese", precision: 10, scale: 3
-    t.decimal "nutrients_lodine", precision: 10, scale: 1
-    t.decimal "nutrients_selenium", precision: 10, scale: 1
-    t.decimal "nutrients_chromium", precision: 10, scale: 1
-    t.decimal "nutrients_molybdenum", precision: 10, scale: 1
-    t.decimal "nutrients_vitamin_a", precision: 10, scale: 1
-    t.decimal "nutrients_β_carotene", precision: 10, scale: 1
-    t.decimal "nutrients_vitamin_d", precision: 10, scale: 2
-    t.decimal "nutrients_vitamin_e", precision: 10, scale: 2
-    t.decimal "nutrients_vitamin_k", precision: 10, scale: 1
-    t.decimal "nutrients_vitamin_b1", precision: 10, scale: 3
-    t.decimal "nutrients_vitamin_b2", precision: 10, scale: 3
-    t.decimal "nutrients_niacin", precision: 10, scale: 2
-    t.decimal "nutrients_vitmain_b6", precision: 10, scale: 3
-    t.decimal "nutrients_vitamin_b12", precision: 10, scale: 2
-    t.decimal "nutrients_folic_acid", precision: 10, scale: 1
-    t.decimal "nutrients_pantothenic_acid", precision: 10, scale: 3
-    t.decimal "nutrients_biotin", precision: 10, scale: 2
-    t.decimal "nutrients_vitamin_c", precision: 10, scale: 1
-    t.decimal "nutrients_saturated_fatty_acid", precision: 10, scale: 3
-    t.decimal "nutrients_polyunsaturated_fatty_acid", precision: 10, scale: 3
-    t.decimal "nutrients_monounsaturated_fatty_acid", precision: 10, scale: 3
-    t.decimal "nutrients_cholesterol", precision: 10, scale: 3
-    t.decimal "nutrients_soluble_dietary_fiber", precision: 10, scale: 2
-    t.decimal "nutrients_insoluble_dietary_fiber", precision: 10, scale: 2
-    t.decimal "nutrients_dietary_fiber", precision: 10, scale: 2
+    t.decimal "nutrients_sodium", precision: 10, scale: 1, default: "0.0"
+    t.decimal "nutrients_potassium", precision: 10, scale: 1, default: "0.0"
+    t.float "nutrients_calcium", default: 0.0
+    t.decimal "nutrients_magnesium", precision: 10, scale: 1, default: "0.0"
+    t.decimal "nutrients_rin", precision: 10, scale: 1, default: "0.0"
+    t.decimal "nutrients_iron", precision: 10, scale: 3, default: "0.0"
+    t.decimal "nutrients_zinc", precision: 10, scale: 3, default: "0.0"
+    t.decimal "nutrients_copper", precision: 10, scale: 3, default: "0.0"
+    t.decimal "nutrients_manganese", precision: 10, scale: 3, default: "0.0"
+    t.decimal "nutrients_lodine", precision: 10, scale: 1, default: "0.0"
+    t.decimal "nutrients_selenium", precision: 10, scale: 1, default: "0.0"
+    t.decimal "nutrients_chromium", precision: 10, scale: 1, default: "0.0"
+    t.decimal "nutrients_molybdenum", precision: 10, scale: 1, default: "0.0"
+    t.decimal "nutrients_vitamin_a", precision: 10, scale: 1, default: "0.0"
+    t.decimal "nutrients_β_carotene", precision: 10, scale: 1, default: "0.0"
+    t.decimal "nutrients_vitamin_d", precision: 10, scale: 2, default: "0.0"
+    t.decimal "nutrients_vitamin_e", precision: 10, scale: 2, default: "0.0"
+    t.decimal "nutrients_vitamin_k", precision: 10, scale: 1, default: "0.0"
+    t.decimal "nutrients_vitamin_b1", precision: 10, scale: 3, default: "0.0"
+    t.decimal "nutrients_vitamin_b2", precision: 10, scale: 3, default: "0.0"
+    t.decimal "nutrients_niacin", precision: 10, scale: 2, default: "0.0"
+    t.decimal "nutrients_vitmain_b6", precision: 10, scale: 3, default: "0.0"
+    t.decimal "nutrients_vitamin_b12", precision: 10, scale: 2, default: "0.0"
+    t.decimal "nutrients_folic_acid", precision: 10, scale: 1, default: "0.0"
+    t.decimal "nutrients_pantothenic_acid", precision: 10, scale: 3, default: "0.0"
+    t.decimal "nutrients_biotin", precision: 10, scale: 2, default: "0.0"
+    t.decimal "nutrients_vitamin_c", precision: 10, scale: 1, default: "0.0"
+    t.decimal "nutrients_saturated_fatty_acid", precision: 10, scale: 3, default: "0.0"
+    t.decimal "nutrients_polyunsaturated_fatty_acid", precision: 10, scale: 3, default: "0.0"
+    t.decimal "nutrients_monounsaturated_fatty_acid", precision: 10, scale: 3, default: "0.0"
+    t.decimal "nutrients_cholesterol", precision: 10, scale: 3, default: "0.0"
+    t.decimal "nutrients_soluble_dietary_fiber", precision: 10, scale: 2, default: "0.0"
+    t.decimal "nutrients_insoluble_dietary_fiber", precision: 10, scale: 2, default: "0.0"
+    t.decimal "nutrients_dietary_fiber", precision: 10, scale: 2, default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "image_id"

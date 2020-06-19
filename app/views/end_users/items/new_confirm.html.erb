@@ -1,264 +1,266 @@
 登録内容確認ページです
 
-<%= form_for @item, url: {action: 'create'} do |f| %>
+<% form_for @item, url: {action: 'create'} do |f| %>
 
   <div class="confirm1">
   	<!-- 商品ステータス -->
-    <%= f.hidden_field :end_user_id %>
+    <% f.hidden_field :end_user_id %>
   </div>
 
   <div class="confirm1">
-    商品名: <%= @item.item_name %>
-    <%= f.hidden_field :item_name %>
+    商品名: <% @item.item_name %>
+    <% f.hidden_field :item_name %>
   </div>
 
   <div class="confirm1">
-    ジャンル: <%= @item.genre.genre_name %>
-    <%= f.hidden_field :genre_id %>
+    ジャンル: <% @item.genre.genre_name %>
+    <% f.hidden_field :genre_id %>
   </div>
 
   <div class="confirm1">
-    単位: <%= @item.unit.unit_name %>
-    <%= f.hidden_field :unit_id %>
+    単位: <% @item.unit.unit_name %>
+    <% f.hidden_field :unit_id %>
   </div>
 
     <div class="confirm1">
-    tag: <%= @item.tag_list %>
-    <%= f.hidden_field :tag_list %>
+    tag: <% @item.tag_list %>
+    <% f.hidden_field :tag_list %>
   </div>
 
   <div class="confirm1">
-  	写真： <%= attachment_image_tag @item, :image, :limit, 300, 300, fallback: "noimage.png",size: "300x300" %>
-  	<%= f.hidden_field :image %>
+    <!-- 入っているデータの確認 -->
+    <%#= @item.image.inspect %>
+  	写真： <%#= attachment_image_tag @item, :image, :limit, 300, 300, fallback: "noimage.png",size: "300x300" %>
+    <% image_tag attachment_url(@item, :image, :fill, 300, 300) %>
   </div>
 
   <div class="confirm1">
-    販売メーカー: <%= @item.maker %>
-    <%= f.hidden_field :maker %>
+    販売メーカー: <% @item.maker %>
+    <% f.hidden_field :maker %>
   </div>
 
   <div class="confirm1">
-    小売価格: <%= @item.retail_price %> 円
-    <%= f.hidden_field :retail_price %>
+    小売価格: <% @item.retail_price %> 円
+    <% f.hidden_field :retail_price %>
   </div>
 
   <div class="confirm1">
-    備考: <%= @item.remark %>
-    <%= f.hidden_field :remark %>
+    備考: <% @item.remark %>
+    <% f.hidden_field :remark %>
   </div>
 
   <div class="confirm1">
   	<!-- 商品ステータス -->
-    <%= f.hidden_field :item_status %>
+    <% f.hidden_field :item_status %>
   </div>
 
   <div class="confirm1">
   	<!-- 管理者確認ステータス -->
-    <%= f.hidden_field :confirm_status %>
+    <% f.hidden_field :confirm_status %>
   </div>
 
   <div class="confirm1">
-    エネルギー: <%= @item.nutrients_calorie %> kcal
-    <%= f.hidden_field :nutrients_calorie %>
+    エネルギー: <% @item.nutrients_calorie %> kcal
+    <% f.hidden_field :nutrients_calorie %>
   </div>
 
   <div class="confirm1">
-    たんぱく質: <%= @item.nutrients_protein %> g
-    <%= f.hidden_field :nutrients_protein %>
+    たんぱく質: <% @item.nutrients_protein %> g
+    <% f.hidden_field :nutrients_protein %>
   </div>
 
   <div class="confirm1">
-    脂質: <%= @item.nutrients_lipid %> g
-    <%= f.hidden_field :nutrients_lipid %>
+    脂質: <% @item.nutrients_lipid %> g
+    <% f.hidden_field :nutrients_lipid %>
   </div>
 
   <div class="confirm1">
-    炭水化物: <%= @item.nutrients_carbohydrate %> g
-    <%= f.hidden_field :nutrients_carbohydrate %>
+    炭水化物: <% @item.nutrients_carbohydrate %> g
+    <% f.hidden_field :nutrients_carbohydrate %>
   </div>
 
   <div class="confirm1">
-    食塩相当量: <%= @item.nutrients_salt %> g
-    <%= f.hidden_field :nutrients_salt %>
+    食塩相当量: <% @item.nutrients_salt %> g
+    <% f.hidden_field :nutrients_salt %>
   </div>
 
   <div class="confirm1">
-    ナトリウム: <%= @item.nutrients_sodium %> 
-    <%= f.hidden_field :nutrients_sodium %>
+    ナトリウム: <% @item.nutrients_sodium %> 
+    <% f.hidden_field :nutrients_sodium %>
   </div>
 
   <div class="confirm1">
-    カリウム: <%= @item.nutrients_potassium %> kcal
-    <%= f.hidden_field :nutrients_potassium %>
+    カリウム: <% @item.nutrients_potassium %> kcal
+    <% f.hidden_field :nutrients_potassium %>
   </div>
 
   <div class="confirm1">
-    カルシウム: <%= @item.nutrients_calcium %> kcal
-    <%= f.hidden_field :nutrients_calcium %>
+    カルシウム: <% @item.nutrients_calcium %> kcal
+    <% f.hidden_field :nutrients_calcium %>
   </div>
 
   <div class="confirm1">
-    マグネシウム: <%= @item.nutrients_magnesium %> kcal
-    <%= f.hidden_field :nutrients_magnesium %>
+    マグネシウム: <% @item.nutrients_magnesium %> kcal
+    <% f.hidden_field :nutrients_magnesium %>
   </div>
 
   <div class="confirm1">
-    リン: <%= @item.nutrients_rin %> kcal
-    <%= f.hidden_field :nutrients_rin %>
+    リン: <% @item.nutrients_rin %> kcal
+    <% f.hidden_field :nutrients_rin %>
   </div>
 
   <div class="confirm1">
-    鉄: <%= @item.nutrients_iron %> kcal
-    <%= f.hidden_field :nutrients_iron %>
+    鉄: <% @item.nutrients_iron %> kcal
+    <% f.hidden_field :nutrients_iron %>
   </div>
 
   <div class="confirm1">
-    亜鉛: <%= @item.nutrients_zinc %> kcal
-    <%= f.hidden_field :nutrients_zinc %>
+    亜鉛: <% @item.nutrients_zinc %> kcal
+    <% f.hidden_field :nutrients_zinc %>
   </div>
 
   <div class="confirm1">
-    銅: <%= @item.nutrients_copper %> kcal
-    <%= f.hidden_field :nutrients_copper %>
+    銅: <% @item.nutrients_copper %> kcal
+    <% f.hidden_field :nutrients_copper %>
   </div>
 
   <div class="confirm1">
-    マンガン: <%= @item.nutrients_manganese %> kcal
-    <%= f.hidden_field :nutrients_manganese %>
+    マンガン: <% @item.nutrients_manganese %> kcal
+    <% f.hidden_field :nutrients_manganese %>
   </div>
   <div class="confirm1">
-    ヨウ素: <%= @item.nutrients_lodine %> kcal
-    <%= f.hidden_field :nutrients_lodine %>
-  </div>
-
-  <div class="confirm1">
-    セレン: <%= @item.nutrients_selenium %> kcal
-    <%= f.hidden_field :nutrients_selenium %>
+    ヨウ素: <% @item.nutrients_lodine %> kcal
+    <% f.hidden_field :nutrients_lodine %>
   </div>
 
   <div class="confirm1">
-    クロム: <%= @item.nutrients_chromium %> kcal
-    <%= f.hidden_field :nutrients_chromium %>
+    セレン: <% @item.nutrients_selenium %> kcal
+    <% f.hidden_field :nutrients_selenium %>
   </div>
 
   <div class="confirm1">
-    モリブデン: <%= @item.nutrients_molybdenum %> kcal
-    <%= f.hidden_field :nutrients_molybdenum %>
+    クロム: <% @item.nutrients_chromium %> kcal
+    <% f.hidden_field :nutrients_chromium %>
   </div>
 
   <div class="confirm1">
-    ビタミンA: <%= @item.nutrients_vitamin_a %> kcal
-    <%= f.hidden_field :nutrients_vitamin_a %>
+    モリブデン: <% @item.nutrients_molybdenum %> kcal
+    <% f.hidden_field :nutrients_molybdenum %>
   </div>
 
   <div class="confirm1">
-    βカロテン: <%= @item.nutrients_β_carotene %> kcal
-    <%= f.hidden_field :nutrients_β_carotene %>
+    ビタミンA: <% @item.nutrients_vitamin_a %> kcal
+    <% f.hidden_field :nutrients_vitamin_a %>
   </div>
 
   <div class="confirm1">
-    ビタミンD: <%= @item.nutrients_vitamin_d %> kcal
-    <%= f.hidden_field :nutrients_vitamin_d %>
+    βカロテン: <% @item.nutrients_β_carotene %> kcal
+    <% f.hidden_field :nutrients_β_carotene %>
   </div>
 
   <div class="confirm1">
-    ビタミンE: <%= @item.nutrients_vitamin_e %> kcal
-    <%= f.hidden_field :nutrients_vitamin_e %>
+    ビタミンD: <% @item.nutrients_vitamin_d %> kcal
+    <% f.hidden_field :nutrients_vitamin_d %>
   </div>
 
   <div class="confirm1">
-    ビタミンK: <%= @item.nutrients_vitamin_k %> kcal
-    <%= f.hidden_field :nutrients_vitamin_k %>
+    ビタミンE: <% @item.nutrients_vitamin_e %> kcal
+    <% f.hidden_field :nutrients_vitamin_e %>
   </div>
 
   <div class="confirm1">
-    ビタミンB1: <%= @item.nutrients_vitamin_b1 %> kcal
-    <%= f.hidden_field :nutrients_vitamin_b1 %>
+    ビタミンK: <% @item.nutrients_vitamin_k %> kcal
+    <% f.hidden_field :nutrients_vitamin_k %>
   </div>
 
   <div class="confirm1">
-    ビタミンB2: <%= @item.nutrients_vitamin_b2 %> kcal
-    <%= f.hidden_field :nutrients_vitamin_b2 %>
+    ビタミンB1: <% @item.nutrients_vitamin_b1 %> kcal
+    <% f.hidden_field :nutrients_vitamin_b1 %>
   </div>
 
   <div class="confirm1">
-    ナイアシン: <%= @item.nutrients_niacin %> kcal
-    <%= f.hidden_field :nutrients_niacin %>
+    ビタミンB2: <% @item.nutrients_vitamin_b2 %> kcal
+    <% f.hidden_field :nutrients_vitamin_b2 %>
   </div>
 
   <div class="confirm1">
-    ビタミンB6: <%= @item.nutrients_vitmain_b6 %> kcal
-    <%= f.hidden_field :nutrients_vitmain_b6 %>
+    ナイアシン: <% @item.nutrients_niacin %> kcal
+    <% f.hidden_field :nutrients_niacin %>
   </div>
 
   <div class="confirm1">
-    ビタミンB12: <%= @item.nutrients_vitamin_b12 %> kcal
-    <%= f.hidden_field :nutrients_vitamin_b12 %>
+    ビタミンB6: <% @item.nutrients_vitmain_b6 %> kcal
+    <% f.hidden_field :nutrients_vitmain_b6 %>
   </div>
 
   <div class="confirm1">
-    葉酸: <%= @item.nutrients_folic_acid %> kcal
-    <%= f.hidden_field :nutrients_folic_acid %>
+    ビタミンB12: <% @item.nutrients_vitamin_b12 %> kcal
+    <% f.hidden_field :nutrients_vitamin_b12 %>
   </div>
 
   <div class="confirm1">
-    パントテン酸: <%= @item.nutrients_pantothenic_acid %> kcal
-    <%= f.hidden_field :nutrients_pantothenic_acid %>
+    葉酸: <% @item.nutrients_folic_acid %> kcal
+    <% f.hidden_field :nutrients_folic_acid %>
   </div>
 
   <div class="confirm1">
-    ビオチン: <%= @item.nutrients_biotin %> kcal
-    <%= f.hidden_field :nutrients_biotin %>
+    パントテン酸: <% @item.nutrients_pantothenic_acid %> kcal
+    <% f.hidden_field :nutrients_pantothenic_acid %>
   </div>
 
   <div class="confirm1">
-    ビタミンC: <%= @item.nutrients_vitamin_c %> kcal
-    <%= f.hidden_field :nutrients_vitamin_c %>
+    ビオチン: <% @item.nutrients_biotin %> kcal
+    <% f.hidden_field :nutrients_biotin %>
   </div>
 
   <div class="confirm1">
-    飽和脂肪酸: <%= @item.nutrients_saturated_fatty_acid %> kcal
-    <%= f.hidden_field :nutrients_saturated_fatty_acid %>
+    ビタミンC: <% @item.nutrients_vitamin_c %> kcal
+    <% f.hidden_field :nutrients_vitamin_c %>
   </div>
 
   <div class="confirm1">
-    一価不飽和脂肪酸: <%= @item.nutrients_polyunsaturated_fatty_acid %> kcal
-    <%= f.hidden_field :nutrients_polyunsaturated_fatty_acid %>
+    飽和脂肪酸: <% @item.nutrients_saturated_fatty_acid %> kcal
+    <% f.hidden_field :nutrients_saturated_fatty_acid %>
   </div>
 
   <div class="confirm1">
-    多価不飽和脂肪酸: <%= @item.nutrients_monounsaturated_fatty_acid %> kcal
-    <%= f.hidden_field :nutrients_monounsaturated_fatty_acid %>
+    一価不飽和脂肪酸: <% @item.nutrients_polyunsaturated_fatty_acid %> kcal
+    <% f.hidden_field :nutrients_polyunsaturated_fatty_acid %>
   </div>
 
   <div class="confirm1">
-    コレステロール: <%= @item.nutrients_cholesterol %> kcal
-    <%= f.hidden_field :nutrients_cholesterol %>
+    多価不飽和脂肪酸: <% @item.nutrients_monounsaturated_fatty_acid %> kcal
+    <% f.hidden_field :nutrients_monounsaturated_fatty_acid %>
   </div>
 
   <div class="confirm1">
-    水溶性食物繊維: <%= @item.nutrients_soluble_dietary_fiber %> kcal
-    <%= f.hidden_field :nutrients_soluble_dietary_fiber %>
+    コレステロール: <% @item.nutrients_cholesterol %> kcal
+    <% f.hidden_field :nutrients_cholesterol %>
   </div>
 
   <div class="confirm1">
-    不溶性食物繊維: <%= @item.nutrients_insoluble_dietary_fiber %> kcal
-    <%= f.hidden_field :nutrients_insoluble_dietary_fiber %>
+    水溶性食物繊維: <% @item.nutrients_soluble_dietary_fiber %> kcal
+    <% f.hidden_field :nutrients_soluble_dietary_fiber %>
   </div>
 
   <div class="confirm1">
-    食物繊維総量: <%= @item.nutrients_dietary_fiber %> kcal
-    <%= f.hidden_field :nutrients_dietary_fiber %>
+    不溶性食物繊維: <% @item.nutrients_insoluble_dietary_fiber %> kcal
+    <% f.hidden_field :nutrients_insoluble_dietary_fiber %>
+  </div>
+
+  <div class="confirm1">
+    食物繊維総量: <% @item.nutrients_dietary_fiber %> kcal
+    <% f.hidden_field :nutrients_dietary_fiber %>
   </div>
 
 
   <div class="actions">
-    <%= f.submit '修正する', name: 'back' %>
+    <% f.submit '修正する', name: 'back' %>
   </div>
 	<!--     <div class="actions btn btn-primary" style="text-decoration: none;">
 	    <%#= link_to '修正する', new_end_users_item_path(@item) %>
 	  </div> -->
   <div class="actions">
-    <%= f.submit '新規作成する', class: "btn-lg btn-primary" %>
+    <% f.submit '新規作成する', class: "btn-lg btn-primary" %>
   </div>
 <% end %>

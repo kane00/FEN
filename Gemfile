@@ -39,6 +39,11 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # デプロイ自動化用
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano3-puma'
+  gem 'capistrano-rbenv'
 end
 
 group :development do
@@ -81,8 +86,16 @@ gem "jquery-rails"
 # タグ機能
 gem 'acts-as-taggable-on', '~> 6.0'
 
-# デプロイ用
+# デプロイ、お問い合わせ用
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
+
+# ページネーション用
+gem 'kaminari'
+
+# 検索用
+gem 'ransack'
+
+

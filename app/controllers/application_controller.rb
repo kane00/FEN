@@ -9,7 +9,7 @@ before_action :configure_permitted_parameters, if: :devise_controller?
   # ログイン後のリダイレクト先
   def after_sign_in_path_for(resource)
     if end_user_signed_in?
-      root_path
+      end_users_search_path
     else admin_user_signed_in?  #activeadmin使っている時はadmin_userで通る
       admin_root_path
     end

@@ -38,6 +38,7 @@
     margin: 0;
 }
 
+
 .more {
     text-align: center;
     margin-top: 20px;
@@ -57,3 +58,46 @@
     background: #bbdeff;         /* 背景の色 */
     opacity: 0.8;         /* カーソル時透明度 */
 }
+
+
+.pagination>li>a {
+  border: none;     /*枠線をなくす*/
+  color: #696969;   /*文字の色を変える*/
+}
+.pagination>.active>a {
+  background: #93c9ff;     /*背景の色を変える*/
+}
+
+
+.scroll-table>table{
+    max-width: 100%;
+    display: block;
+    overflow-x: scroll;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+.scroll-table>table>tbody:nth-child(odd) {
+    background-color:  #F0F8FF;    /* 背景色指定 */
+}
+.scroll-table>table>thead>tr>th{
+    padding-right: 20px;
+    padding-left: 5px;
+}
+.scroll-table>table>tbody>tr>td{
+    padding: 5px 20px 5px 5px;
+    border-bottom: solid 1px;
+    line-height: 50px;
+    text-align: center;
+}
+
+
+.index-table>table>tbody{
+    border-top: inset 1px;
+    border-bottom: inset 1px;
+}
+.index-table>table>tbody>tr>th{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+

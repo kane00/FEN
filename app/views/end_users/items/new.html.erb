@@ -3,7 +3,7 @@
 <h2>新規投稿</h2>
 <%= flash[:notice] %>
 
-<%= form_for @item, url: {action: 'new_confirm'} do |f| %> 
+<%= form_for @item, url: {action: 'create'} do |f| %> 
 	
 	<div class="field1">
 		<!-- ユーザー情報はログインしているcurrent_end_user.idを入れる -->
@@ -13,7 +13,7 @@
 
 	<div class="field1">
 		<%= f.label :item_name, "商品名" %>
-	    <%= f.text_field :item_name %>
+	    <%= f.text_field :item_name, :placeholder => "例：ジューシーハンバーグ 80g" %>
 	</div>
 
  	<div class="field1">
@@ -22,233 +22,243 @@
  	</div>
 
  	<div class="field1">
-	     <%= f.label :unit_id, "ユニット" %>
+	     <%= f.label :unit_id, "単位" %>
 	    <!-- f.collection_select(保存されるカラム名, オブジェクトの配列, カラムに保存される項目, 選択肢に表示されるカラム名, {オプション}, {htmlオプション} ) -->
 	    <%#= f.collection_select :unit_id, @units, :id, :unit_name %>
 	        <%= f.select :unit_id, Unit.all.map{|o| [o.unit_name, o.id]} %>
 	</div>
 
 	<div class="field1">
-		<%= f.label :tag_list, 'タグをスペース区切りで入力' %>
-		<%= text_field_tag 'item[tag_list]', @item.tag_list, :class => "form-control" %>
+		<%= f.label :tag_list, 'タグ(スペース区切りで入力)' %>
+		<%= f.text_field :tag_list, value: @item.tag_list.to_s, :placeholder => "例：米 主食 低カロリー" %>
+		<%#= text_field :tag_list, value: @item.tag_list %>
+		<!-- f.text_field :tag_list, value: @task.tag_list.join(','), class: "form-control" -->
 	</div>
 
 	<div class="field1">
 		写真:
-		<%= attachment_image_tag @item.image, :image, :limit, 300, 300, fallback: "noimage.png",size: "300x300" %>
+		<div class="item-image">
+        	<%= attachment_image_tag @item, :image, class: "img-square", fallback: "noimage.png", size:"300x300" %><!-- 更新しないと反映されていない、showのjsが原因か -->
+    	</div>
+		<%#= attachment_image_tag @item, :image, :limit, 300, 300, fallback: "noimage.png",size: "300x300", id:"prev_img" %>
 		<%= f.attachment_field :image %>
 	</div>
 
 	<div class="field1">
 		<%= f.label :maker, "販売メーカー" %>
-	    <%= f.text_field :maker %>
+	    <%= f.text_field :maker, :placeholder => "例：DMM" %>
 	</div>
 
 	<div class="field1">
 		<%= f.label :retail_price, "小売価格" %>
-	    <%= f.text_field :retail_price %>
+	    <%= f.text_field :retail_price, :placeholder => "例：100" %>円
 	</div>
 
 	<div class="field1">
 		<%= f.label :remark, "備考" %>
-	    <%= f.text_field :remark %>
+	    <%= f.text_area :remark, :placeholder => "例：カロリー50％オフになりました" %>
 	</div>
 
 	<div class="field1">
 		<!-- アイテムステータスはデフォルト値をそのままもってくる -->
-		<%= f.hidden_field :item_status %>
+		<%= f.hidden_field :item_status, :value => @item.item_status %>
 	</div>
 
 	<div class="field1">
 		<!-- アイテムステータスはデフォルト値をそのままもってくる -->
-		<%= f.hidden_field :confirm_status %>
+		<%= f.hidden_field :confirm_status, :value => @item.confirm_status %>
 	</div>
 
 	<div class="field1">
 	    <%= f.label :nutrients_calorie, "エネルギー" %>
-	    <%= f.text_field :nutrients_calorie %>
+	    <%= f.text_field :nutrients_calorie, :placeholder => "例：150" %>kcal
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_protein, "たんぱく質" %>
-	    <%= f.text_field :nutrients_protein %>
+	    <%= f.text_field :nutrients_protein, :placeholder => "例：10.0" %>g
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_lipid, "脂質" %>
-	    <%= f.text_field :nutrients_lipid %>
+	    <%= f.text_field :nutrients_lipid, :placeholder => "例：5.0" %>g
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_carbohydrate, "炭水化物" %>
-	    <%= f.text_field :nutrients_carbohydrate %>
+	    <%= f.text_field :nutrients_carbohydrate, :placeholder => "例：3.5" %>g
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_salt, "食塩相当量" %>
-	    <%= f.text_field :nutrients_salt %>
+	    <%= f.text_field :nutrients_salt, :placeholder => "例：0.5" %>g
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_sodium, "ナトリウム" %>
-	    <%= f.text_field :nutrients_sodium %>
+	    <%= f.text_field :nutrients_sodium, :placeholder => "例：1000、記入がなければ「-」で保存されます。" %>mg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_potassium, "カリウム" %>
-	    <%= f.text_field :nutrients_potassium %>
+	    <%= f.text_field :nutrients_potassium, :placeholder => "記入がなければ「-」で保存されます。" %>mg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_calcium, "カルシウム" %>
-	    <%= f.text_field :nutrients_calcium %>
+	    <%= f.text_field :nutrients_calcium, :placeholder => "記入がなければ「-」で保存されます。" %>mg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_magnesium, "マグネシウム" %>
-	    <%= f.text_field :nutrients_magnesium %>
+	    <%= f.text_field :nutrients_magnesium, :placeholder => "記入がなければ「-」で保存されます。" %>mg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_rin, "リン" %>
-	    <%= f.text_field :nutrients_rin %>
+	    <%= f.text_field :nutrients_rin, :placeholder => "記入がなければ「-」で保存されます。" %>mg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_iron, "鉄" %>
-	    <%= f.text_field :nutrients_iron %>
+	    <%= f.text_field :nutrients_iron, :placeholder => "記入がなければ「-」で保存されます。" %>mg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_zinc, "亜鉛" %>
-	    <%= f.text_field :nutrients_zinc %>
+	    <%= f.text_field :nutrients_zinc, :placeholder => "記入がなければ「-」で保存されます。" %>mg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_copper, "銅" %>
-	    <%= f.text_field :nutrients_copper %>
+	    <%= f.text_field :nutrients_copper, :placeholder => "記入がなければ「-」で保存されます。" %>mg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_manganese, "マンガン" %>
-	    <%= f.text_field :nutrients_manganese %>
+	    <%= f.text_field :nutrients_manganese, :placeholder => "記入がなければ「-」で保存されます。" %>mg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_lodine, "ヨウ素" %>
-	    <%= f.text_field :nutrients_lodine %>
+	    <%= f.text_field :nutrients_lodine, :placeholder => "記入がなければ「-」で保存されます。" %>μg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_selenium, "セレン" %>
-	    <%= f.text_field :nutrients_selenium %>
+	    <%= f.text_field :nutrients_selenium, :placeholder => "記入がなければ「-」で保存されます。" %>μg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_chromium, "モリブデン" %>
-	    <%= f.text_field :nutrients_chromium %>
+	    <%= f.text_field :nutrients_chromium, :placeholder => "記入がなければ「-」で保存されます。" %>μg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_vitamin_a, "ビタミンA" %>
-	    <%= f.text_field :nutrients_vitamin_a %>
+	    <%= f.text_field :nutrients_vitamin_a, :placeholder => "記入がなければ「-」で保存されます。" %>μg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_β_carotene, "βカロテン" %>
-	    <%= f.text_field :nutrients_β_carotene %>
+	    <%= f.text_field :nutrients_β_carotene, :placeholder => "記入がなければ「-」で保存されます。" %>μg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_vitamin_d, "ビタミンD" %>
-	    <%= f.text_field :nutrients_vitamin_d %>
+	    <%= f.text_field :nutrients_vitamin_d, :placeholder => "記入がなければ「-」で保存されます。" %>μg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_vitamin_e, "ビタミンE" %>
-	    <%= f.text_field :nutrients_vitamin_e %>
+	    <%= f.text_field :nutrients_vitamin_e, :placeholder => "記入がなければ「-」で保存されます。" %>mg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_vitamin_k, "ビタミンK" %>
-	    <%= f.text_field :nutrients_vitamin_k %>
+	    <%= f.text_field :nutrients_vitamin_k, :placeholder => "記入がなければ「-」で保存されます。" %>μg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_vitamin_b1, "ビタミンB1" %>
-	    <%= f.text_field :nutrients_vitamin_b1 %>
+	    <%= f.text_field :nutrients_vitamin_b1, :placeholder => "記入がなければ「-」で保存されます。" %>mg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_vitamin_b2, "ビタミンB2" %>
-	    <%= f.text_field :nutrients_vitamin_b2 %>
+	    <%= f.text_field :nutrients_vitamin_b2, :placeholder => "記入がなければ「-」で保存されます。" %>mg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_niacin, "ナイアシン" %>
-	    <%= f.text_field :nutrients_niacin %>
+	    <%= f.text_field :nutrients_niacin, :placeholder => "記入がなければ「-」で保存されます。" %>mg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_vitmain_b6, "ビタミンB6" %>
-	    <%= f.text_field :nutrients_vitmain_b6 %>
+	    <%= f.text_field :nutrients_vitmain_b6, :placeholder => "記入がなければ「-」で保存されます。" %>mg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_vitamin_b12, "ビタミンB12" %>
-	    <%= f.text_field :nutrients_vitamin_b12 %>
+	    <%= f.text_field :nutrients_vitamin_b12, :placeholder => "記入がなければ「-」で保存されます。" %>μg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_folic_acid, "葉酸" %>
-	    <%= f.text_field :nutrients_folic_acid %>
+	    <%= f.text_field :nutrients_folic_acid, :placeholder => "記入がなければ「-」で保存されます。" %>μg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_pantothenic_acid, "パントテン酸" %>
-	    <%= f.text_field :nutrients_pantothenic_acid %>
+	    <%= f.text_field :nutrients_pantothenic_acid, :placeholder => "商記入がなければ「-」で保存されます。" %>mg
  	</div>
 
  	<div class="field1">
-	    <%= f.label :nutrients_biotin, "ビタミンC" %>
-	    <%= f.text_field :nutrients_biotin %>
+	    <%= f.label :nutrients_biotin, "ビオチン" %>
+	    <%= f.text_field :nutrients_biotin, :placeholder => "記入がなければ「-」で保存されます。" %>μg
+ 	</div>
+
+ 	<div class="field1">
+	    <%= f.label :nutrients_vitamin_c, "ビタミンC" %>
+	    <%= f.text_field :nutrients_vitamin_c, :placeholder => "記入がなければ「-」で保存されます。" %>mg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_saturated_fatty_acid, "飽和脂肪酸" %>
-	    <%= f.text_field :nutrients_saturated_fatty_acid %>
+	    <%= f.text_field :nutrients_saturated_fatty_acid, :placeholder => "記入がなければ「-」で保存されます。" %>g
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_polyunsaturated_fatty_acid, "一価不飽和脂肪酸" %>
-	    <%= f.text_field :nutrients_polyunsaturated_fatty_acid %>
+	    <%= f.text_field :nutrients_polyunsaturated_fatty_acid, :placeholder => "記入がなければ「-」で保存されます。" %>g
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_monounsaturated_fatty_acid, "多価不飽和脂肪酸" %>
-	    <%= f.text_field :nutrients_monounsaturated_fatty_acid %>
+	    <%= f.text_field :nutrients_monounsaturated_fatty_acid, :placeholder => "記入がなければ「-」で保存されます。" %>g
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_cholesterol, "コレステロール" %>
-	    <%= f.text_field :nutrients_cholesterol %>
+	    <%= f.text_field :nutrients_cholesterol, :placeholder => "記入がなければ「-」で保存されます。" %>mg
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_soluble_dietary_fiber, "水溶性食物繊維" %>
-	    <%= f.text_field :nutrients_soluble_dietary_fiber %>
+	    <%= f.text_field :nutrients_soluble_dietary_fiber, :placeholder => "記入がなければ「-」で保存されます。" %>g
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_insoluble_dietary_fiber, "不溶性食物繊維" %>
-	    <%= f.text_field :nutrients_insoluble_dietary_fiber %>
+	    <%= f.text_field :nutrients_insoluble_dietary_fiber, :placeholder => "記入がなければ「-」で保存されます。" %>g
  	</div>
 
  	<div class="field1">
 	    <%= f.label :nutrients_dietary_fiber, "食物繊維総量" %>
-	    <%= f.text_field :nutrients_dietary_fiber %>
+	    <%= f.text_field :nutrients_dietary_fiber, :placeholder => "記入がなければ「-」で保存されます。" %>g
  	</div>
 
-    <%= f.submit "確認画面へ" %>
+    <%= f.submit "投稿する" %>
  
 <% end %>
