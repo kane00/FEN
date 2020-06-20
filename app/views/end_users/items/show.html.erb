@@ -1,16 +1,23 @@
-show、詳細ページだよ
-
+<div class="container">
+	show、詳細ページだよ
+	<div class="row">
+		<div class="col-xs-8">
+			<h2><%= @item.item_name %></h2>
+			<% if @item.confirm_status == false %>
+				<div style="display: inline-block; border: solid 1px; font-size: 9px;">未確認</div>
+			<% else %>
+				<div style="text-decoration: none">確認済み</div>
+			<% end %>
+		</div>
+		<div class="col-xs-4 text-right" style="padding-top: 20px">
+			登録日：<%= @item.created_at.strftime('%Y/%m/%d') %><br>
+			更新日：<%= @item.updated_at.strftime('%Y/%m/%d') %>
+		</div>
+	</div>
+</div>
 <div>
-	<h2><%= @item.item_name %></h2>
-
-	登録日：<%= @item.created_at.strftime('%Y/%m/%d') %>
-	更新日：<%= @item.updated_at.strftime('%Y/%m/%d') %>
-
-	<% if @item.confirm_status == false %>
-		<div style="text-decoration: none">未確認</div>
-	<% else %>
-		<div style="text-decoration: none">確認済み</div>
-	<% end %>
+	
+	
 
 	販売メーカー：<%= @item.maker %>
 	希望小売価格：<%= @item.retail_price %>円

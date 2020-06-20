@@ -1,12 +1,21 @@
-topベージだよ
-<%= flash[:notice] %>
+<div class="container">
+	topベージだよ
+	<%= flash[:notice] %>
+	<div class="row">
+		<div class="col-xs-2">
+			<%= render 'end_users/templetes/genre', genres: @genres %>
+		</div>
 
-	<%= search_form_for @q, url: end_users_search_path, html: { method: :get } do |f| %>
-		<%= f.label :name, "商品名で検索" %>
-  		<%= f.search_field :item_name_cont, :placeholder => "商品名" %>
-		<%= f.submit "検索" %>
-	<% end %>
+		<div class="col-xs-8">
+			<%= search_form_for @q, url: end_users_search_path, html: { method: :get } do |f| %>
+				<%= f.label :name, "商品名で検索" %>
+  				<%= f.search_field :item_name_cont, :placeholder => "商品名" %>
+				<%= f.submit "検索" %>
+			<% end %>
+		</div>
 
-<%= render 'end_users/templetes/genre', genres: @genres %>
-
-<%= render 'end_users/templetes/tag_list', tags: @tags %>
+		<div class="col-xs-2">
+			<%= render 'end_users/templetes/tag_list', tags: @tags %>
+		</div>
+	</div>
+</div>

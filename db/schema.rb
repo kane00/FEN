@@ -58,13 +58,6 @@ ActiveRecord::Schema.define(version: 2020_06_18_024850) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "contacts", force: :cascade do |t|
-    t.string "email"
-    t.text "message"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "end_users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -83,13 +76,6 @@ ActiveRecord::Schema.define(version: 2020_06_18_024850) do
   create_table "genres", force: :cascade do |t|
     t.string "genre_name"
     t.boolean "genre_status", default: true, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "inquiries", force: :cascade do |t|
-    t.string "name"
-    t.string "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
