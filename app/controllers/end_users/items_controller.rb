@@ -6,6 +6,7 @@ def top
 	@genres = Genre.all
   @tags = Item.tag_counts_on(:tags).order('count DESC')
   @q = Item.where.not(item_status: 'false').ransack(params[:q])
+  @items = Item.where.not(item_status: 'false')
 end
 
 def about
@@ -37,7 +38,6 @@ def create
   #     flash[:notice] = 'エラーが発生しました。お手数ですがもう一度登録をお願いします。'
   #     render :new
   # end
-  flash[:notice] = '投稿'
   redirect_to understand_end_users_items_path
 end
 

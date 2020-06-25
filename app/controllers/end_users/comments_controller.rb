@@ -15,7 +15,7 @@ class EndUsers::CommentsController < ApplicationController
     # end
     item = Item.find(params[:item_id])
     @comment = Comment.new(comment_params)
-	@comment.end_user_id = current_end_user.id
+	  @comment.end_user_id = current_end_user.id
     @comment.item_id = item.id
     @comment.save
     redirect_to end_users_item_path(params[:item_id])

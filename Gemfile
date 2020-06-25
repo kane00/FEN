@@ -98,4 +98,5 @@ gem 'kaminari'
 # 検索用
 gem 'ransack'
 
+gem 'pry-byebug'
 
