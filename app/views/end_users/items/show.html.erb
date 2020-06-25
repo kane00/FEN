@@ -1,118 +1,292 @@
 <div class="container">
-	show、詳細ページだよ
+	<%= flash[:notice] %>
 	<div class="row">
 		<div class="col-xs-8">
-			<h2><%= @item.item_name %></h2>
+			<div class="content"><%= @item.item_name %></div>
 			<% if @item.confirm_status == false %>
-				<div style="display: inline-block; border: solid 1px; font-size: 9px;">未確認</div>
+				<div class="show-confirm1">未確認</div>
 			<% else %>
-				<div style="text-decoration: none">確認済み</div>
+				<div class="show-confirm2">確認済</div>
+			<% end %>
+			<% if @item.end_user_id == current_end_user.id && @item.confirm_status == true %>
+			<!-- 編集依頼は投稿者のみ表示,編集が複数回しないよう管理者が確認するまで１回 -->
+				<%= link_to '編集依頼する', edit_end_users_item_path(@item.id) %>
 			<% end %>
 		</div>
-		<div class="col-xs-4 text-right" style="padding-top: 20px">
+		<div class="col-xs-4 text-right" style="padding-top: 30px">
 			登録日：<%= @item.created_at.strftime('%Y/%m/%d') %><br>
 			更新日：<%= @item.updated_at.strftime('%Y/%m/%d') %>
 		</div>
 	</div>
-</div>
-<div>
-	
-	
 
-	販売メーカー：<%= @item.maker %>
-	希望小売価格：<%= @item.retail_price %>円
-	<%= attachment_image_tag(@item, :image, :fill, 300, 300, fallback: "noimage.png", size: "300x300") %>
-	いいね機能(仮)
-	<% if @item.end_user_id == current_end_user.id %>
-	<!-- 編集依頼は投稿者のみ表示、if文は後ほど書く -->
-		<%= link_to '編集依頼する', edit_end_users_item_path(@item.id) %>
-	<% end %>
-</div>
+	<div class="row">
+		<div class="col-xs-6">
+			<div class="show-image">
+			<%= attachment_image_tag(@item, :image, :style => "height:320px; width:auto;", fallback: "noimage.png") %>
+			</div>
 
-<div>
-	ジャンル：<%= link_to @item.genre.genre_name, end_users_search_path %>
-	自由タグ：
-	<% @item.tags.each do |tag| %>
-        <span><%= link_to "##{tag}", "../tags/#{tag.name}" %></span>
-    <% end %>
+			<table class="show-ex">
+				<tbody>
+					<tr>
+						<th>いいね数：</th>
+						<td colspan="3"><%= render 'end_users/likes/like', item: @item %></td>
+					</tr>
+					<tr>
+						<th>販売メーカー：</th>
+						<td colspan="3"><%= @item.maker %></td>
+					</tr>
+					<tr>
+						<th>希望小売価格：</th>
+						<td colspan="3"><%= @item.retail_price %>円</td>
+					</tr>
+					<tr>
+						<th>食品分類：</th>
+						<td colspan="3"><%= link_to @item.genre.genre_name, end_users_search_path %></td>
+					</tr>
+					<tr>
+						<th>ハッシュタグ：</th>
+						<td colspan="3">
+							<% @item.tags.each do |tag| %>
+	        					<span><%= link_to "##{tag}", "../tags/#{tag.name}" %></span>
+	    					<% end %>
+	    				</td>
+					</tr>
+					<tr>
+						<th>備考：</th>
+						<td colspan="3"><%= @item.remark %></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 
-	備考：<%= @item.remark %>
-	栄養量：[<%= @item.unit.unit_name %>]
-	<% if @item.unit.unit_name == '100gあたり' %>
-		<div id="number_list" class="item-list">
-		<ul>
-			<li>エネルギー：　<%= @item.nutrients_calorie %>　kcal</li>
-			<li>たんぱく質：　<%= @item.nutrients_protein %>　g</li>
-			<li>脂質： <%= @item.nutrients_lipid %>　g</li>
-			<li>炭水化物： <%= @item.nutrients_carbohydrate %>　g</li>
-			<li>塩分： <%= @item.nutrients_salt %>　g</li>
-			<li>ナトリウム：　<%= @item.nutrients_sodium %>　g</li>
-			<li>カリウム：　<%= @item.nutrients_potassium %>　g</li>
-			<li>カルシウム：　<%= @item.nutrients_calcium %>　g</li>
-			<li>マグネシウム：　<%= @item.nutrients_magnesium %>　g</li>
-			<li>リン：　<%= @item.nutrients_rin %>　g</li>
-			<li>鉄：　<%= @item.nutrients_iron %>　g</li>
-			<li>亜鉛：　<%= @item.nutrients_zinc %>　g</li>
-			<li>銅：　<%= @item.nutrients_copper %>　g</li>
-			<li>マンガン：　<%= @item.nutrients_manganese %>　g</li>
-			<li>ヨウ素：　<%= @item.nutrients_lodine %>　g</li>
-			<li>セレン：　<%= @item.nutrients_selenium %>　g</li>
-			<li>クロム：　<%= @item.nutrients_chromium %>　g</li>
-			<li>モリブデン：　<%= @item.nutrients_molybdenum %>　g</li>
-			<li>ビタミンA：　<%= @item.nutrients_vitamin_a %>　g</li>
-			<li>βカロテン：　<%= @item.nutrients_β_carotene %>　g</li>
-			<li>ビタミンD：　<%= @item.nutrients_vitamin_d %>　g</li>
-			<li>ビタミンE：　<%= @item.nutrients_vitamin_e %>　g</li>
-			<li>ビタミンK：　<%= @item.nutrients_vitamin_k %>　g</li>
-			<li>ビタミンB1：　<%= @item.nutrients_vitamin_b1 %>　g</li>
-			<li>ビタミンB2：　<%= @item.nutrients_vitamin_b2 %>　g</li>
-			<li>ナイアシン：　<%= @item.nutrients_niacin %>　g</li>
-			<li>ビタミンB6：　<%= @item.nutrients_vitmain_b6 %>　g</li>
-			<li>ビタミンB12：　<%= @item.nutrients_vitamin_b12 %>　g</li>
-			<li>葉酸：　<%= @item.nutrients_folic_acid %>　g</li>
-			<li>パントテン酸：　<%= @item.nutrients_pantothenic_acid %>　g</li>
-			<li>ビオチン：　<%= @item.nutrients_biotin %>　g</li>
-			<li>ビタミンC：　<%= @item.nutrients_vitamin_c %>　g</li>
-			<li>飽和脂肪酸：　<%= @item.nutrients_saturated_fatty_acid %>　g</li>
-			<li>一価不飽和脂肪酸：　<%= @item.nutrients_polyunsaturated_fatty_acid %>　g</li>
-			<li>多価不飽和脂肪酸：　<%= @item.nutrients_monounsaturated_fatty_acid %>　g</li>
-			<li>コレステロール：　<%= @item.nutrients_cholesterol %>　g</li>
-			<li>水溶性食物繊維：　<%= @item.nutrients_soluble_dietary_fiber %>　g</li>
-			<li>不溶性食物繊維：　<%= @item.nutrients_insoluble_dietary_fiber %>　g</li>
-			<li>食物繊維総量：　<%= @item.nutrients_dietary_fiber %>　g</li>
-		</ul>
-		
-		<button id="more_btn">詳細を見る</button>
-    	<button id="close_btn">表示数を戻す</button>
-  		
-  	</div>
-	<% else %>
-		100gあたり量で計算する
-	<% end %>
+		<div class="col-xs-3">
+			<% if @item.unit.unit_name == '100gあたり' %>
+				<table class="show-table">
+					<thead>
+						<tr>
+							<td style="width: 160px;">栄養素</td>
+							<td colspan="2">[<%= @item.unit.unit_name %>]</td>
 
-</div>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>エネルギー</td>
+							<td><%= @item.nutrients_calorie %></td>
+							<td>kcal</td>
+						</tr><tr>
+							<td>たんぱく質</td>
+							<td><%= @item.nutrients_protein %></td>
+							<td>g</td>
+						</tr><tr>
+							<td>脂質</td>
+							<td><%= @item.nutrients_lipid %></td>
+							<td>g</td>
+						</tr><tr>
+							<td>炭水化物</td>
+							<td><%= @item.nutrients_carbohydrate %></td>
+							<td>g</td>
+						</tr><tr>
+							<td>食塩相当量</td>
+							<td><%= @item.nutrients_salt %></td>
+							<td>g</td>
+						</tr><tr>
+							<td>ナトリウム</td>
+							<td><%= @item.nutrients_sodium %></td>
+							<td>mg</td>
+						</tr><tr>
+							<td>カリウム</td>
+							<td><%= @item.nutrients_potassium %></td>
+							<td>mg</td>
+						</tr><tr>
+							<td>カルシウム</td>
+							<td><%= @item.nutrients_calcium %></td>
+							<td>mg</td>
+						</tr><tr>
+							<td>マグネシウム</td>
+							<td><%= @item.nutrients_magnesium %></td>
+							<td>mg</td>
+						</tr><tr>
+							<td>リン</td>
+							<td><%= @item.nutrients_rin %></td>
+							<td>mg</td>
+						</tr><tr>
+							<td>鉄</td>
+							<td><%= @item.nutrients_iron %></td>
+							<td>mg</td>
+						</tr><tr>
+							<td>亜鉛</td>
+							<td><%= @item.nutrients_zinc %></td>
+							<td>mg</td>
+						</tr><tr>
+							<td>銅</td>
+							<td><%= @item.nutrients_copper %></td>
+							<td>mg</td>
+						</tr><tr>
+							<td>マンガン</td>
+							<td><%= @item.nutrients_manganese %></td>
+							<td>mg</td>
+						</tr><tr>
+							<td>ヨウ素</td>
+							<td><%= @item.nutrients_lodine %></td>
+							<td>μg</td>
+						</tr><tr>
+							<td>セレン</td>
+							<td><%= @item.nutrients_selenium %></td>
+							<td>μg</td>
+						</tr><tr>
+							<td>クロム</td>
+							<td><%= @item.nutrients_chromium %></td>
+							<td>μg</td>
+						</tr><tr>
+							<td>モリブデン</td>
+							<td><%= @item.nutrients_molybdenum %></td>
+							<td>μg</td>
+						</tr><tr>
+							<td>ビタミンA</td>
+							<td><%= @item.nutrients_vitamin_a %></td>
+							<td>μg</td>
+						</tr><tr>
+							<td>βカロテン</td>
+							<td><%= @item.nutrients_β_carotene %></td>
+							<td>μg</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-xs-3">
+				<table class="show-table">
+					<thead>
+						<tr>
+							<td style="width: 160px;">栄養素</td>
+							<td colspan="2">[<%= @item.unit.unit_name %>]</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>ビタミンD</td>
+							<td><%= @item.nutrients_vitamin_d %></td>
+							<td>μg</td>
+						</tr><tr>
+							<td>ビタミンE</td>
+							<td><%= @item.nutrients_vitamin_e %></td>
+							<td>mg</td>
+						</tr><tr>
+							<td>ビタミンK</td>
+							<td><%= @item.nutrients_vitamin_k %></td>
+							<td>μg</td>
+						</tr><tr>
+							<td>ビタミンB1</td>
+							<td><%= @item.nutrients_vitamin_b1 %></td>
+							<td>mg</td>
+						</tr><tr>
+							<td>ビタミンB2</td>
+							<td><%= @item.nutrients_vitamin_b2 %></td>
+							<td>mg</td>
+						</tr>
+						<tr>
+							<td>ナイアシン</td>
+							<td><%= @item.nutrients_niacin %></td>
+							<td>mg</td>
+						</tr><tr>
+							<td>ビタミンB6</td>
+							<td><%= @item.nutrients_vitmain_b6 %></td>
+							<td>mg</td>
+						</tr><tr>
+							<td>ビタミンB12</td>
+							<td><%= @item.nutrients_vitamin_b12 %></td>
+							<td>μg</td>
+						</tr><tr>
+							<td>葉酸</td>
+							<td><%= @item.nutrients_folic_acid %></td>
+							<td>μg</td>
+						</tr><tr>
+							<td>パントテン酸</td>
+							<td><%= @item.nutrients_pantothenic_acid %></td>
+							<td>mg</td>
+						</tr><tr>
+							<td>ビオチン</td>
+							<td><%= @item.nutrients_biotin %></td>
+							<td>g</td>
+						</tr><tr>
+							<td>ビタミンC</td>
+							<td><%= @item.nutrients_vitamin_c %></td>
+							<td>mg</td>
+						</tr><tr>
+							<td>飽和脂肪酸</td>
+							<td><%= @item.nutrients_saturated_fatty_acid %></td>
+							<td>g</td>
+						</tr><tr>
+							<td>一価不飽和脂肪酸</td>
+							<td><%= @item.nutrients_polyunsaturated_fatty_acid %></td>
+							<td>g</td>
+						</tr><tr>
+							<td>多価不飽和脂肪酸</td>
+							<td><%= @item.nutrients_monounsaturated_fatty_acid %></td>
+							<td>g</td>
+						</tr><tr>
+							<td>コレステロール</td>
+							<td><%= @item.nutrients_cholesterol %></td>
+							<td>mg</td>
+						</tr><tr>
+							<td>水溶性食物繊維</td>
+							<td><%= @item.nutrients_soluble_dietary_fiber %></td>
+							<td>g</td>
+						</tr><tr>
+							<td>不溶性食物繊維</td>
+							<td><%= @item.nutrients_insoluble_dietary_fiber %></td><td>g</td>
+						</tr><tr>
+							<td>食物繊維総量</td>
+							<td><%= @item.nutrients_dietary_fiber %></td>
+							<td>g</td>
+						</tr>
+					</tbody>
+				</table>
+			<% else %>
+				100gあたり量で計算する
+			<% end %>
+		</div>
+	</div>
 
-<div>
-	
-	<div style="">コメント一覧：<%= @item.comments.count %>件</div>
-	<% @item.comments.each do |comment| %>
-		<%= comment.end_user.end_user_name %>
-		<span><%= comment.created_at.strftime('%Y/%m/%d') %></span>
-		<%= comment.comment_text %>
-		<% if @comment.end_user_id == current_end_user.id %>
-		  <div>
-		    <%= link_to "削除", end_users_item_comment_path(@item.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn-sm btn-danger" %>
-		  </div>
-		<% end %>
-	<% end %>
-
-	<%= form_for [@item, @comment], url: end_users_item_comments_path(@item.id) do |f| %>
-	    <div class="row">
-	        <div class="col-sm-12">
-	            <%= f.text_area :comment_text, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
-	        </div>
-	    </div>
-	    <%= f.submit "送信する", class: "btn btn-success default" %>
-
-	<% end %>
+	<div class="row">
+		<h4>コメント一覧：<%= @item.comments.count %>件</h4>
+		<div class="col-xs-8">
+			<div id="number_list" class="item-list">
+			<table>
+				<thead>
+					<tr>
+						<th>ユーザー名</th>
+						<th colspan="3">コメント</th>
+						<th>投稿日</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				<% @item.comments.each do |comment| %>
+					<tr>
+						<td><%= comment.end_user.end_user_name %></td>
+						<td colspan="3"><%= comment.comment_text %></td>
+						<td><span style="font-size: 10px;"><%= comment.created_at.strftime('%Y/%m/%d') %></span></td>
+						<% if comment.end_user_id == current_end_user.id %>
+							<td><%= link_to "削除", end_users_item_comment_path(comment.item, comment), method: :delete, class: "btn-sm btn-danger", "data-confirm" => "コメントを削除しますか？" %></td>
+						<% end %>
+					</tr>
+				<% end %>
+				</tbody>
+			</table>
+			<% if @item.comments.count >= 6 %>
+				<button id="more_btn" style="margin-bottom: 15px;">もっと見る</button>
+				<button id="close_btn" style="margin-bottom: 15px;">表示数を戻す</button>
+			<% end %>
+			</div>
+		</div>
+		<div class="col-xs-4">
+			<%= form_for [@item, @comment], url: end_users_item_comments_path(@item) do |f| %>
+			    <%= f.text_area :comment_text, class: "form-control",placeholder: "コメントをかく", :size=>"30x3" %>
+			    <div style="text-align: right;">
+			    	<%= f.submit "送信する", class: "btn-sm btn-success", "data-confirm" => "コメントを投稿しますか？" %>
+				</div>
+			<% end %>
+		</div>
+	</div>
 </div>

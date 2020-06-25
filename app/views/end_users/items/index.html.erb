@@ -1,15 +1,16 @@
 <div class="container">
-	index、一覧ページだよ
-	<h2>商品一覧</h2>
+	<div class="content">
+		商品一覧
+	</div>
 	<div class="row">
 		<div class="col-xs-2">
 			<%= render 'end_users/templetes/genre', genres: @genres %>
 		</div>
 		<div class="col-xs-10">
-			<h2>現在登録されている商品の数</h2>
-			<h4>全<%= @item.count %>件</h4>
+			<div class="content2">商品数： <%= @item.count %>件</strong></div>
+			<div style="padding-top: 20px;">
 			<%= render 'end_users/templetes/itemfind', items: @items %>
-
+			</div>
 		</div>
 	</div>
 </div>

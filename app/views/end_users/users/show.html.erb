@@ -1,74 +1,86 @@
 <div class="container">
- <div class="row">
-  <div class=""></div>
-  <div class="text-center" style="background-color: #eeeeee">
-   <h2>マイページ</h2>
+  <div class="content">
+      マイページ
   </div>
- </div>
 
- <div style="padding-bottom: 10px; margin-top: 30px;">
- <table>
-  <tr>
-   <th>
-    <div style="padding-right: 20px;">
-	   <h3><strong>登録情報</strong></h3>
+  <%= flash[:notice] %>
+
+  <div class="row" style="margin: 20px 0px 20px 0px; ">
+    <div class="col-xs-2 col-xs-offset-1" style="font-size: 20px;">
+      <strong>登録情報</strong>
     </div>
-   </th>
-   <td>
-	 <div style="padding-right: 10px;">
-		<%= link_to "編集する", edit_end_users_user_path(current_end_user.id), class: "btn btn-primary" %>
-	</div>
-   </td>
-   <td><button type="button" class="btn btn-primary btn-none" style="width: 200px;">パスワードを変更する</button></td>
-  </tr>
- </table>
-</div>
-
-<%= flash[:notice] %>
-
-<div class="row">
- <div>
-	<table class="table table-bordered end-user-mypage-table">
-		<tr>
-			 <th>ユーザー名</th>
-			 <td><%= current_end_user.end_user_name %></td>
-		</tr>
-
-		<tr>
-			<th>メールアドレス</th>
-       		<td><%= current_end_user.email %></td>
-    	</tr>
-
-    	<tr>
-			<th>お住まいの地域</th>
-			<td><%= current_end_user.area %></td>
-	  	</tr>
-    </table>
- </div>
-</div>
-
-<table style="margin-bottom: 30px;">
- <tr>
-  <th><h4><strong>お気に入りの商品</strong></h4></th>
-  <td>
-   <div style="padding-left: 20px;">
-  	<%= link_to "一覧を見る" %>
+    <div class="col-xs-2" style="margin-top: 5px;">
+      <%= link_to "編集する", edit_end_users_user_path(current_end_user.id) %>
     </div>
-   </td>
- </tr>
-
- <div style="margin-top: 20px;">
- <tr>
-  <th><h4><strong>投稿した商品</strong></h4></th>
-  <td>
-   <div style="padding-left: 20px;">
-   <%= link_to "一覧を見る" %>
    </div>
-  </td>
- </tr>
- </div>
-</table>
-<div>
-    <li style="font-size: 12px; text-decoration: none; list-style: none;"><%= link_to "お問い合わせ", inquiry_path %></li>
-</div>
+
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-2">
+      <table class="mypage-table1 table table-bordered">
+  		  <tr>
+  			 <th>ユーザー名</th>
+  			 <td><%= current_end_user.end_user_name %></td>
+  		</tr>
+
+  		<tr>
+  			<th>メールアドレス</th>
+         		<td><%= current_end_user.email %></td>
+      	</tr>
+
+      	<tr>
+  			<th>お住まいの地域</th>
+  			<td><%= current_end_user.area %></td>
+  	  	</tr>
+      </table>
+   </div>
+  </div>
+
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-xs-2 col-xs-offset-1" style="font-size: 20px;">
+      <strong>お気に入りの商品</strong>
+    </div>
+    <div class="col-xs-2" style="margin-top: 5px;">
+      <%= link_to "一覧を見る", end_users_like_index_path %>
+    </div>
+   </div>
+
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-2">
+      <div style="padding-top: 20px;">
+      <% if current_end_user.liked_items.count != 0 %>
+          <table class="mypage-table2">
+            <% current_end_user.liked_items.last(4).each do |item| %>
+              <tbody>
+                <tr>
+                  <td>
+                    <%= link_to end_users_item_path(item.id), data: {"turbolinks" => false} do %>
+                      <%= attachment_image_tag(item, :image, :style => "height:100px; width:auto;", fallback: "noimage.png") %><!-- item.imageだけだとstringのみとってくる -->
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <%= link_to item.item_name, end_users_item_path(item.id), data: {"turbolinks" => false}  %>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <%= render 'end_users/likes/like', item: item %>
+                  </td>
+                </tr>
+              </tbody>
+            <% end %>
+          </table>
+        <% else %>
+          いいねした商品はまだありません。
+        <% end %>
+        </div>
+      </div>
+    </div>
+
+  <div class="row">
+    <div class="col-xs-4 col-xs-offset-1" style="margin-top: 20px; margin-bottom: 20px;">
+      システム面でのご連絡は<%= link_to "お問い合わせ", inquiry_path %>にお願いします。
+    </div>
+  </div>
 </div>

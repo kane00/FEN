@@ -31,7 +31,7 @@
     <!-- 入っているデータの確認 -->
     <%#= @item.image.inspect %>
   	写真： <%#= attachment_image_tag @item, :image, :limit, 300, 300, fallback: "noimage.png",size: "300x300" %>
-    <%= image_tag attachment_url(@item, :image, :fill, 300, 300, fallback: "noimage.png",size: "300x300") %>
+    <%= image_tag attachment_url(@item, :image, :style => "height:320px; width:auto;", fallback: "noimage.png") %>
   </div>
 
   <div class="confirm1">

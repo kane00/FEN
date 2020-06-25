@@ -15,12 +15,12 @@ end
 
 def update
 	@user = EndUser.find(params[:id])
-	if params[:back]
+	if params[:save]
 		# (user_params)忘れずに
 		@user.update(user_params)
 		flash[:notice] = "変更が保存されました。"
 		redirect_to end_users_user_path(current_end_user.id)
-	else params[:user_status] == 'true'
+	else params[:back]
 		@user.user_status = false
 		@user.save
 		flash[:notice] = "ありがとうございました。またのご利用を心よりお待ちしております。"

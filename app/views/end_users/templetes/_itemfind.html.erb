@@ -1,5 +1,6 @@
 <% if params[:q] != nil %>		<!-- :qのパラメータをもっているかいないか -->
 	<% if items.count != 0 %>		<!-- :qのパラメータをもっている && 商品が1以上ある -->
+		<h6 class="text-right">栄養素をクリックすると多い順、少ない順に並び替えることができます。</h6>
 		<div class="scroll-table">
 			<div style="float: left"><%= paginate items %></div>
 			<table>
@@ -14,7 +15,7 @@
 						<th><%= sort_link(@q, :nutrients_salt, "塩分") %></th>
 						<th><%= sort_link(@q, :nutrients_sodium, "ナトリウム") %></th>
 						<th><%= sort_link(@q, :nutrients_potassium, "カリウム") %></th>
-						<th><%= sort_link(@q, :nutrients_calcium, "マグネシウム") %></th>
+						<th><%= sort_link(@q, :nutrients_calcium, "カルシウム") %></th>
 						<th><%= sort_link(@q, :nutrients_magnesium, "マグネシウム") %></th>
 						<th><%= sort_link(@q, :nutrients_rin, "リン") %></th>
 						<th><%= sort_link(@q, :nutrients_iron, "鉄") %></th>
@@ -53,9 +54,13 @@
 				<tbody>
 					<tr>
 						<td><%= link_to item.item_name, end_users_item_path(item.id), data: {"turbolinks" => false}  %></td>
-						<td><%= attachment_image_tag(item, :image, :fill, 50, 50, fallback: "noimage.png", size: "50x50") %></td>
+						<td>
+							<%= link_to end_users_item_path(item.id), data: {"turbolinks" => false} do %>
+								<%= attachment_image_tag(item, :image, :style => "height:50px; width:auto;", fallback: "noimage.png") %>
+							<% end %>
+						</td>
 						<td><%= item.nutrients_calorie %></td>
-						<td><%= item.nutrients_calorie %></td>
+						<td><%= item.nutrients_protein %></td>
 						<td><%= item.nutrients_lipid %></td>
 						<td><%= item.nutrients_carbohydrate %></td>
 						<td><%= item.nutrients_salt %></td>
@@ -111,11 +116,14 @@
 				<% items.each do |item| %>
 				    <tbody>
 				        <tr>
-				            <th rowspan="3"><%= attachment_image_tag(item, :image, :fill, 100, 100, fallback: "noimage.png", size: "100x100") %></th>
-				            <td style="padding-top: 10px;"><%= link_to item.item_name, end_users_item_path(item.id), data: {"turbolinks" => false}  %></td>
+				            <th rowspan="3" class="text-center">
+				            	<%= link_to end_users_item_path(item.id), data: {"turbolinks" => false} do %>
+									<%= attachment_image_tag(item, :image, :style => "height:100px; width:auto;", fallback: "noimage.png") %>
+							<% end %></th>
+				            <td style="padding-top: 10px; font-size: 15px;"><%= link_to item.item_name, end_users_item_path(item.id), data: {"turbolinks" => false}  %></td>
 				        </tr>
 				        <tr>
-				            <td>いいね数</td>
+				            <td><%= render 'end_users/likes/like', item: item %></td>
 				        </tr>
 						<tr>
 				            <td>更新日：<%= item.updated_at.strftime('%Y/%m/%d') %></td>

@@ -17,26 +17,159 @@
  @import "bootstrap";
 
 
-.item-list {
-    width: 200px;
-    margin: auto;
-    padding: 0;
+
+.content {
+  overflow:hidden;
+  font-family: 'Lato', sans-serif;
+  font-size: 35px;
+  line-height: 40px;
+  font-weight: 600;
+  margin-bottom: 30px;
+
+  &__container {
+    overflow: hidden;
+    height: 40px;
+
+    &__text {
+      display: inline;
+      float: left;
+      margin: 0;
+    }
+
+    &__list {
+      margin-top: 0;
+      padding-left: 230px;
+      text-align: left;
+      list-style: none;
+
+      -webkit-animation-name: change;
+      -webkit-animation-duration: 50s;
+      -webkit-animation-iteration-count: infinite;
+      animation-name: change;
+      animation-duration: 50s;
+      animation-iteration-count: infinite;
+
+      &__item {
+        line-height:40px;
+        margin:0;
+      }
+    }
+  }
 }
-.item-list li {
-    list-style: none;
-    background-color: #bbbbbb;
-    margin-top: 10px;
-    text-align: center;
-    border-radius: 4px;
-    height: 32px;
-    line-height: 32px;
-    font-size: 13px;
+
+@-webkit-keyframes opacity {
+  0%, 100% {opacity:0;}
+  50% {opacity:1;}
 }
-.item-list li.is-hidden {
-    opacity: 0;
-    height: 0;
-    margin: 0;
+@-webkit-keyframes change {
+  0%, 4.88%, 100% {transform:translate3d(0,0,0);}
+  5.88%, 10.76% {transform:translate3d(0,-5.88%,0);}
+  11.76%,16.64% {transform:translate3d(0,-11.76%,0);}
+  17.64%,22.52% {transform:translate3d(0,-17.64%,0);}
+  23.52%,28.40% {transform:translate3d(0,-23.52%,0);}
+  29.40%,34.28% {transform:translate3d(0,-29.40%,0);}
+  35.28%,40.16% {transform:translate3d(0,-35.28%,0);}
+  41.16%,46.04% {transform:translate3d(0,-41.16%,0);}
+  47.04%,51.92% {transform:translate3d(0,-47.04%,0);}
+  52.92%,57.80% {transform:translate3d(0,-52.92%,0);}
+  58.80%,63.68% {transform:translate3d(0,-58.80%,0);}
+  64.68%,69.68% {transform:translate3d(0,-64.68%,0);}
+  70.56%,75.44% {transform:translate3d(0,-70.56%,0);}
+  76.44%,81.32% {transform:translate3d(0,-76.44%,0);}
+  82.32%,87.20% {transform:translate3d(0,-82.32%,0);}
+  88.20%,93.08% {transform:translate3d(0,-88.20%,0);}
+  94.08%,98.06% {transform:translate3d(0,-94.08%,0);}
 }
+@-o-keyframes opacity {
+  0%, 100% {opacity:0;}
+  50% {opacity:1;}
+}
+@-o-keyframes change {
+  0%, 4.88%, 100% {transform:translate3d(0,0,0);}
+  5.88%, 10.76% {transform:translate3d(0,-5.88%,0);}
+  11.76%,16.64% {transform:translate3d(0,-11.76%,0);}
+  17.64%,22.52% {transform:translate3d(0,-17.64%,0);}
+  23.52%,28.40% {transform:translate3d(0,-23.52%,0);}
+  29.40%,34.28% {transform:translate3d(0,-29.40%,0);}
+  35.28%,40.16% {transform:translate3d(0,-35.28%,0);}
+  41.16%,46.04% {transform:translate3d(0,-41.16%,0);}
+  47.04%,51.92% {transform:translate3d(0,-47.04%,0);}
+  52.92%,57.80% {transform:translate3d(0,-52.92%,0);}
+  58.80%,63.68% {transform:translate3d(0,-58.80%,0);}
+  64.68%,69.68% {transform:translate3d(0,-64.68%,0);}
+  70.56%,75.44% {transform:translate3d(0,-70.56%,0);}
+  76.44%,81.32% {transform:translate3d(0,-76.44%,0);}
+  82.32%,87.20% {transform:translate3d(0,-82.32%,0);}
+  88.20%,93.08% {transform:translate3d(0,-88.20%,0);}
+  94.08%,98.06% {transform:translate3d(0,-94.08%,0);}
+}
+@-moz-keyframes opacity {
+  0%, 100% {opacity:0;}
+  50% {opacity:1;}
+}
+@-moz-keyframes change {
+  0%, 4.88%, 100% {transform:translate3d(0,0,0);}
+  5.88%, 10.76% {transform:translate3d(0,-5.88%,0);}
+  11.76%,16.64% {transform:translate3d(0,-11.76%,0);}
+  17.64%,22.52% {transform:translate3d(0,-17.64%,0);}
+  23.52%,28.40% {transform:translate3d(0,-23.52%,0);}
+  29.40%,34.28% {transform:translate3d(0,-29.40%,0);}
+  35.28%,40.16% {transform:translate3d(0,-35.28%,0);}
+  41.16%,46.04% {transform:translate3d(0,-41.16%,0);}
+  47.04%,51.92% {transform:translate3d(0,-47.04%,0);}
+  52.92%,57.80% {transform:translate3d(0,-52.92%,0);}
+  58.80%,63.68% {transform:translate3d(0,-58.80%,0);}
+  64.68%,69.68% {transform:translate3d(0,-64.68%,0);}
+  70.56%,75.44% {transform:translate3d(0,-70.56%,0);}
+  76.44%,81.32% {transform:translate3d(0,-76.44%,0);}
+  82.32%,87.20% {transform:translate3d(0,-82.32%,0);}
+  88.20%,93.08% {transform:translate3d(0,-88.20%,0);}
+  94.08%,98.06% {transform:translate3d(0,-94.08%,0);}
+}
+@keyframes opacity {
+  0%, 100% {opacity:0;}
+  50% {opacity:1;}
+}
+@keyframes change {
+  0%, 4.88%, 100% {transform:translate3d(0,0,0);}
+  5.88%, 10.76% {transform:translate3d(0,-5.88%,0);}
+  11.76%,16.64% {transform:translate3d(0,-11.76%,0);}
+  17.64%,22.52% {transform:translate3d(0,-17.74%,0);}
+  23.52%,28.40% {transform:translate3d(0,-23.52%,0);}
+  29.40%,34.28% {transform:translate3d(0,-29.50%,0);}
+  35.28%,40.16% {transform:translate3d(0,-35.48%,0);}
+  41.16%,46.04% {transform:translate3d(0,-41.16%,0);}
+  47.04%,51.92% {transform:translate3d(0,-47.04%,0);}
+  52.92%,57.80% {transform:translate3d(0,-52.92%,0);}
+  58.80%,63.68% {transform:translate3d(0,-58.80%,0);}
+  64.68%,69.68% {transform:translate3d(0,-64.68%,0);}
+  70.56%,75.44% {transform:translate3d(0,-70.66%,0);}
+  76.44%,81.32% {transform:translate3d(0,-76.64%,0);}
+  82.32%,87.20% {transform:translate3d(0,-82.32%,0);}
+  88.20%,93.08% {transform:translate3d(0,-88.20%,0);}
+  94.08%,98.96% {transform:translate3d(0,-94.08%,0);}
+}
+
+
+
+.content2{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+.like-btn {
+ width: 20px;
+ height: 20px;
+ font-size: 20px;
+ color: #808080;
+ }
+.unlike-btn {
+ width: 20px;
+ height: 20px;
+ font-size: 20px;
+ color: #e54747;
+ }
 
 
 .more {
@@ -70,24 +203,42 @@
 
 
 .scroll-table>table{
-    max-width: 100%;
+    width: 100%;
+    table-layout: fixed;
     display: block;
     overflow-x: scroll;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
 }
 .scroll-table>table>tbody:nth-child(odd) {
-    background-color:  #F0F8FF;    /* 背景色指定 */
+    background-color:  #FFF0F5;    /* 背景色指定 */
+}
+.scroll-table>table>tbody:nth-child(even) {
+    background-color:  #FFFFFF;
 }
 .scroll-table>table>thead>tr>th{
-    padding-right: 20px;
-    padding-left: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    text-align: center;
 }
 .scroll-table>table>tbody>tr>td{
-    padding: 5px 20px 5px 5px;
+    padding: 5px 10px 5px 10px;
     border-bottom: solid 1px;
     line-height: 50px;
     text-align: center;
+}
+.scroll-table>table>thead>tr>th:first-child{
+    /* 横スクロール時に固定する */
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
+.scroll-table>table>tbody>tr>td:first-child{
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  background: darken(#F0F8FF, 2%);
 }
 
 
@@ -98,6 +249,223 @@
 .index-table>table>tbody>tr>th{
     padding-top: 10px;
     padding-bottom: 10px;
+    width: 300px;
 }
 
 
+.show-confirm1{
+    display: inline-block;
+    border: solid 1px #FF9872;
+    font-size: 11px;
+    background-color: #FFDBC9;
+}
+.show-confirm2{
+    display: inline-block;
+    border: solid 1px #87CEFA;
+    font-size: 11px;
+    background-color: #CBFFD3;
+}
+.show-image{
+    display: inline-block;
+    margin-top: 20px;
+    border: double;
+}
+.show-ex>tbody>tr>th{
+    padding: 10px 10px;
+    margin-bottom: 5px;
+    text-align: right;
+}
+.show-ex>tbody>tr>td{
+    padding: 10px 10px;
+}
+.show-table>thead>tr>td, .show-table>tbody>tr>td:nth-child(1){
+    background-color: #F3FFD8;
+}
+.show-table>thead>tr>td{
+    background-color: #F0F8FF;
+}
+.show-table>thead>tr>td, .show-table>tbody>tr>td{
+    border: solid 1px;
+    border-collapse: collapse; /* セルの線を重ねる */
+    padding: 5px;
+}
+
+
+.item-list>table, .show-ex{
+    table-layout: fixed;
+    width: 100%;
+}
+.item-list>table>thead>tr>th{
+    padding-left: 10px;
+    margin-bottom: 5px;
+}
+.item-list>table>tbody>tr>td{
+    padding: 10px 10px;
+    overflow-wrap : break-word;
+}
+
+
+.input-table1>tbody>tr>th, .input-table1>tbody>tr>td{
+    padding-top: 10px;
+}
+.input-table2>tbody>tr>td:nth-child(1){
+    width: 40%;
+    font-size: 11px;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+
+/* mypageページ */
+.mypage-table2{
+    display: inline-flex;
+}
+.mypage-table2>tbody>tr>td{
+    width: 200px;
+}
+
+
+/* understandページ */
+.main-heading {
+  color: #777;
+  text-transform: uppercase;
+}
+.main-heading-primary {
+  display: block;
+  font-size: 5.5rem;
+  font-weight: 400;
+  letter-spacing: 35px;     /* 文字間 */
+  animation: moveInLeft 0.8s ease-out;
+}
+.main-heading-secondary {
+  font-family: sans-serif;
+  display: block;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 25px;
+  color: hotpink;
+  animation: moveInRight 1.0s ease-out;
+}
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  80% {
+    transform: translateX(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  80% {
+    transform: translateX(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+
+.haikei {
+width: 100%;
+height: 400px;
+background-image: image-url("yasai.jpg");
+background-repeat: no-repeat;
+background-size:cover;
+position: relative;
+}
+.image1 {
+  background: rgba(255,255,255,0.7);
+  height: 100%;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.css-fade1{
+    padding-top: 10px;
+    padding-left: 10px;
+    animation-name: fade-in1;
+    animation-duration: 0.7s; //アニメーション時間
+    animation-timing-function: ease-out; //アニメーションさせるイージング
+    animation-delay: 0s; //アニメーション開始させる時間
+    animation-iteration-count: 1; //繰り返し回数
+    animation-direction: normal; //往復処理をするかどうか
+    animation-fill-mode: forwards; //アニメーション後のスタイルをどうするか
+  }
+  // アニメーション
+  @keyframes fade-in1 {
+    0% {
+      opacity: 0;
+      transform: translate3d(-40px, 0, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+.css-fade2{
+    padding-top: 10px;
+    padding-right: 10px;
+    animation-name: fade-in2;
+    animation-duration: 1.0s; //アニメーション時間
+    animation-timing-function: ease-out; //アニメーションさせるイージング
+    animation-delay: 0s; //アニメーション開始させる時間
+    animation-iteration-count: 1; //繰り返し回数
+    animation-direction: normal; //往復処理をするかどうか
+    animation-fill-mode: forwards; //アニメーション後のスタイルをどうするか
+  }
+  // アニメーション
+  @keyframes fade-in2 {
+    0% {
+      opacity: 0;
+      transform: translate3d(60px, 0, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+.css-fade3{
+    padding-top: 80px;
+    animation-name: fade-in3;
+    animation-duration: 0.6s; //アニメーション時間
+    animation-timing-function: ease-out; //アニメーションさせるイージング
+    animation-delay: 0s; //アニメーション開始させる時間
+    animation-iteration-count: 1; //繰り返し回数
+    animation-direction: normal; //往復処理をするかどうか
+    animation-fill-mode: forwards; //アニメーション後のスタイルをどうするか
+  }
+  // アニメーション
+  @keyframes fade-in3 {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, 80px, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+
+
+
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+footer {
+  margin-top: auto;
+}

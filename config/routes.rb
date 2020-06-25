@@ -23,10 +23,13 @@ Rails.application.routes.draw do
   namespace :end_users do
     # タグ機能
     get 'tags/:tag', to: 'tags#index', as: :tag
-    # resources :tags, only: %i[index show]
 
     get 'search' => 'items#search'
     post 'search' => 'items#search'
+
+    get '/like/index' => 'likes#index', as: 'like_index'
+    post   '/like/:item_id' => 'likes#like',   as: 'like'
+    delete '/like/:item_id' => 'likes#unlike', as: 'unlike'
 
     resources :items do
       collection do

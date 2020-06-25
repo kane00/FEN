@@ -8,7 +8,7 @@
 
 # モデルクラス名.create(:カラム名1 => 値1, :カラム名2 => 値2, ...)
 # adminテストユーザー
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')#if Rails.env.development?
 
 require 'csv'
 
