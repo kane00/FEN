@@ -1,32 +1,40 @@
-<%= form_for @inquiry, :url => inquiry_confirm_path do |f| %>
-  <div class="page-header">
-    <h1>お問い合わせ</h1>
-  </div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+      <%= form_for @inquiry, :url => inquiry_confirm_path do |f| %>
+        <div class="page-header content2">
+          お問い合わせ
+        </div>
 
-  <% if @inquiry.errors.any? %>
-    <div class="alert alert-danger" role="alert">
-      <strong>入力内容にエラーがあります</strong>
-      <ul>
-        <% @inquiry.errors.each do |attr, msg| %>
-          <li><%= msg %></li>
+        <% if @inquiry.errors.any? %>
+          <div class="alert alert-danger" role="alert">
+            <strong>入力内容にエラーがあります</strong>
+            <ul>
+              <% @inquiry.errors.each do |attr, msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <table class="table">
-    <tr>
-      <th>名前<span class="text-danger">（必須）</span></th>
-      <td><%= f.text_field :name %></td>
-    </tr>
-    <tr>
-      <th>メールアドレス<span class="text-danger">（必須）</span></th>
-      <td><%= f.text_field :email %></td>
-    </tr>
-    <tr>
-      <th>お問い合わせ内容</th>
-      <td><%= f.text_area :message %></td>
-    </tr>
-  </table>
-  <%= f.submit '確認', class: 'btn btn-primary' %>
-<% end %>
+        <table class="table">
+          <tr>
+            <th>名前<span class="text-danger">（必須）</span></th>
+            <td><%= f.text_field :name %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス<span class="text-danger">（必須）</span></th>
+            <td><%= f.text_field :email %></td>
+          </tr>
+          <tr>
+            <th>お問い合わせ内容</th>
+            <td><%= f.text_area :message %></td>
+          </tr>
+        </table>
+        <div class="text-center" style="padding-bottom: 20px;">
+          <%= f.submit '確認', class: 'btn btn-primary' %>
+        </div>
+        <% end %>
+    </div>
+  </div>
+</div>

@@ -4,6 +4,7 @@ class Item < ApplicationRecord
 	has_many :comments, dependent: :destroy
 	belongs_to :genre
 	belongs_to :unit
+	has_many :likes, dependent: :destroy
 
 	# 画像表示用
 	attachment :image

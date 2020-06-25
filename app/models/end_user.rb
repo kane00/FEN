@@ -17,8 +17,8 @@ class EndUser < ApplicationRecord
 
   has_many :comments, dependent: :destroy
   has_many :items, dependent: :destroy
-
-  
+  has_many :likes, dependent: :destroy
+  has_many :liked_items, through: :likes, source: :item
 
   # 退会ユーザーはログインできなくする user_statusをもってくる
   def active_for_authentication?

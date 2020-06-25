@@ -1,31 +1,41 @@
-<div class="page-header">
-  <h1>お問い合わせ</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2">
+
+      <div class="page-header content2">
+        お問い合わせ
+      </div>
+
+      以下の内容で送信します。よろしいですか？
+      <%= form_for @inquiry, :url => inquiry_thanks_path do |f| %>
+        <table class="table">
+          <tr>
+            <th>名前</th>
+            <td>
+              <%= f.hidden_field :name %>
+              <%= @inquiry.name %>
+            </td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td>
+              <%= f.hidden_field :email %>
+              <%= @inquiry.email %>
+            </td>
+          </tr>
+          <tr>
+            <th>お問い合わせ内容</th>
+            <td>
+              <%= f.hidden_field :message %>
+              <%= simple_format(@inquiry.message) %>
+            </td>
+          </tr>
+        </table>
+        <div class="text-center" style="padding-bottom: 20px;">
+          <%= f.submit '送信', :class => 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
 
-以下の内容で送信します。よろしいですか？
-<%= form_for @inquiry, :url => inquiry_thanks_path do |f| %>
-  <table class="table">
-    <tr>
-      <th>名前</th>
-      <td>
-        <%= f.hidden_field :name %>
-        <%= @inquiry.name %>
-      </td>
-    </tr>
-    <tr>
-      <th>メールアドレス</th>
-      <td>
-        <%= f.hidden_field :email %>
-        <%= @inquiry.email %>
-      </td>
-    </tr>
-    <tr>
-      <th>お問い合わせ内容</th>
-      <td>
-        <%= f.hidden_field :message %>
-        <%= simple_format(@inquiry.message) %>
-      </td>
-    </tr>
-  </table>
-  <%= f.submit '送信', :class => 'btn btn-primary' %>
-<% end %>

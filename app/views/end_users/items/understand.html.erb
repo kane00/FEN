@@ -1,11 +1,25 @@
-understandページ
+<div class="container">
+	<div class="row" style="margin: 20px 0px 20px 0px;">
+		<div class="col-xs-8  col-xs-offset-2">
+  		<h1 class="main-heading text-center">
+	    	<span class="main-heading-primary">THANK YOU!</span>
+	    	<span class="main-heading-secondary">Post Completed!</span>
+  		</h1>
+		</div>
+	</div>
+	<div class="row text-center" style="margin-bottom: 20px;">
+		ありがとうございました。商品が投稿されました。<br>
+		管理者が確認すると管理者確認ボタンが表示されます。
+	</div>
+	<div class="row" style="margin-bottom: 20px;">
+		<div class="col-xs-3 col-xs-offset-3">
+		続けて商品を登録する
+		<%= link_to "商品新規登録", new_end_users_item_path, class: 'btn btn-default', data: {"turbolinks" => false} %>
+		</div>
+		<div class="col-xs-3">
+		商品一覧を確認する
+		<%= link_to "商品一覧", end_users_items_path, class: 'btn btn-default' %>
+		</div>
+	</div>
+</div>
 
-ありがとうございました。商品が<%= flash[:notice] %>されました。
-管理者が確認すると管理者確認ボタンが表示されます。
-
-
-続けて商品を登録する
-<%= link_to "商品新規登録", new_end_users_item_path, class: 'btn btn-default', data: {"turbolinks" => false} %>
-
-商品一覧を確認する
-<%= link_to "商品一覧", end_users_items_path, class: 'btn btn-default' %>

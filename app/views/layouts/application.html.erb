@@ -4,9 +4,11 @@
     <title>FEN</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="sample.css" type="text/css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script><!-- jquery読み込み用 -->
   </head>
 
@@ -20,14 +22,20 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        <div style="margin-left: 20px;">
+        <%= link_to(("/"), :style=>"text-decoration: none;", data: {"turbolinks" => false}) do %>
+          <%= image_tag "logo.png", :style => "height:70px; width:auto;" %>
+         <% end %>
+       </div>
       </div>
 
       <nav id="" class="">
-        <ul class="nav navbar-nav navbar-right" style="font-size: 16px">
+        <ul class="nav navbar-nav navbar-right" style="font-size: 16px; margin-right: 20px; padding-top: 10px;">
+
           <!-- 会員ログイン後 -->
           <% if end_user_signed_in? %>
-            <li class="user" style="margin-right: 30px">ようこそ、　<%= current_end_user.end_user_name %>　さん！</li>
-            <li><%= link_to "top", root_path %></li>
+            <li class="user" style="margin-top: 15px;">ようこそ、　<%= current_end_user.end_user_name %>　さん！</li>
+            <li><%= link_to "top", root_path, data: {"turbolinks" => false} %></li>
             <li><%= link_to "マイページ", end_users_user_path(current_end_user.id) %></li>
             <li><%= link_to "商品一覧", end_users_items_path %></li>
             <li><%= link_to "商品検索", end_users_search_path %></li>
@@ -45,10 +53,11 @@
 
     <!-- viewページ -->
     <%= yield %>
+
     <script src="application.js"></script>
   </body>
   <!-- フッター部分 -->
-  <footer class="" style="background-color: #eeeeee">
+  <footer class="" style="background-color: #eeeeee;">
     <div style="text-align: center;">
       <span>(C). All Rights Reserved.</span>
     </div>

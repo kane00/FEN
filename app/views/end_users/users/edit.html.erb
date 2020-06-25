@@ -1,41 +1,51 @@
-editページだよ
-
-<%= form_for(@user, url: end_users_user_path) do |f| %>
-  <%= render "end_users/shared/error_messages", resource: @user %>
-
-
-  <div class="field">
-    <%= f.label :end_user_name, "ユーザー名" %><br />
-    <!-- autofocus機能は自動フォーカス、画面が映ったときのカーソル指定 -->
-    <%= f.text_field :end_user_name, autofocus: true %>
+<div class="container">
+  <div class="row">
+    <div class="content col-xs-9">
+     登録情報編集
+    </div>
+    <div class="col-xs-2" style="padding-top: 20px;">
+     <%= link_to "マイページに戻る", end_users_user_path(current_end_user.id) %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
+  <%= form_for(@user, url: end_users_user_path) do |f| %>
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+        <%= render "end_users/shared/error_messages", resource: @user %>
+        <div class="field">
+          <%= f.label :end_user_name, "ユーザー名" %><br />
+          <!-- autofocus機能は自動フォーカス、画面が映ったときのカーソル指定 -->
+          <%= f.text_field :end_user_name, autofocus: true %>
+        </div>
 
-  <div class="field">
-    <%= f.label :area, "お住まいの地域" %><br />
-    <!-- モデルに登録しenumでもってきている、モデル名.カラム名複数形.keysで設定したenumを呼び出す -->
-    <%= f.select :area, EndUser.areas.keys, autofocus: true %>
-  </div>
+        <div class="field">
+          <%= f.label :email, "メールアドレス" %><br />
+          <%= f.email_field :email, autocomplete: "email" %>
+        </div>
 
-  <div>
- 	  <%= f.hidden_field :user_status, :value => true %>
-  </div>
+        <div class="field">
+          <%= f.label :area, "お住まいの地域" %><br />
+          <!-- モデルに登録しenumでもってきている、モデル名.カラム名複数形.keysで設定したenumを呼び出す -->
+          <%= f.select :area, EndUser.areas.keys, autofocus: true %>
+        </div>
+       	  <%= f.hidden_field :user_status, :value => true %>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= f.submit '編集内容を保存する', class: "btn btn-primary", name: 'save' %>
-  </div>
+    <div class="row" style="margin: 20px 0px 20px 0px;">
+      <div class="col-xs-3 col-xs-offset-3">
+          <%= f.submit '編集内容を保存する', class: "btn btn-primary", name: 'save' %>
+      </div>
 
-  <%= link_to "戻る", end_users_user_path(current_end_user.id) %>
-
-	<!-- ユーザーが一致しているか確認 -->
-	<% if end_user_signed_in? && @user.id == current_end_user.id %>
-  		<div class="">
-       		<%= f.submit "退会する", method: :patch, data: {confirm: "削除しますか？"}, class: "btn btn-danger" %>  
-       		<%#= f.hidden_field :user_status, :value => false %>   
-    	</div>
+      <div class="col-xs-3">
+      	<!-- ユーザーが一致しているか確認 -->
+      	<% if end_user_signed_in? && @user.id == current_end_user.id %>
+        		<div class="">
+             		<%= f.submit "退会する", method: :patch, data: {confirm: "本当に退会しますか？"}, class: "btn btn-danger", name: 'back' %>
+             		<%#= f.hidden_field :user_status, :value => false %>
+          	</div>
+        <% end %>
+      </div>
+    </div>
   <% end %>
-<% end %>
+</div>

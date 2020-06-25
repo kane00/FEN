@@ -1,38 +1,41 @@
-
 <div class="container">
-	searchページです
-	<h2>検索ページ</h2>
+	<div class="content">
+	商品検索
+	</div>
 	<div class="row">
 		<div class="col-xs-2">
 			<%= render 'end_users/templetes/genre', genres: @genres %>
 		</div>
 
 		<div class="col-xs-8">
-		<!-- genreに何も含まれていない時は検索ページを表示する -->
-		<% if params[:genre_id] == nil %>
+			<!-- genreに何も含まれていない時は検索ページを表示する -->
+			<% if params[:genre_id] == nil %>
+				<% if params[:q] == nil %>
+					<div class="haikei">
+						<div class="image1">
+							<div class="css-fade1 text-left">左の「食品分類」から探す</div>
 
-			<%#= form_tag(end_users_search_path,:method => 'get') do %>
-			  <%#= text_field_tag :word, params[:word], :placeholder => "商品名" %>
-			  <%#= submit_tag 'Search', :name => nil %>
-			<%# end %>
-			<%= search_form_for @q, url: end_users_search_path, html: { method: :get } do |f| %>
-				<%= f.label :name, "商品名で検索" %>
-		  		<%= f.search_field :item_name_cont, :placeholder => "商品名" %>
-				<%= f.submit "検索" %>
-			<% end %>
-
-			<% if params[:q] != nil %>
-				<%= params[:q] %>の検索結果
-				全<%= @item.count %>件
-				<%= render 'end_users/templetes/itemfind', items: @items %>
-			<% end %>
-			<!-- genreがparameterをもっていたら(ジャンルから飛んできたら)こちらを開く -->
-		<% else %>
-			<h2>「<%= @genre.genre_name %>」で登録されている商品</h2>
-				<h4>全<%= @genreitem.count %>件</h4>
-
+							<div class="css-fade2 text-right">右の「タグ」から探す</div>
+							<div class="css-fade3 text-center"><%= search_form_for @q, url: end_users_search_path, html: { method: :get } do |f| %>
+								<%= f.label :name, "商品名で検索" %>
+						  		<%= f.search_field :item_name_cont, :placeholder => "商品名" %>
+								<%= f.submit "検索" %>
+								<% end %>
+							</div>
+						</div>
+					</div>
+				<% else %>
+					<div class="content2">
+						"<%= @q.item_name_cont %>" の検索結果：
+					<%= @item.count %>件</div>
+					<%= render 'end_users/templetes/itemfind', items: @items %>
+				<% end %>
+				<!-- genreがparameterをもっていたら(ジャンルから飛んできたら)こちらを開く -->
+			<% else %>
+				<div class="content2">
+					"<%= @genre.genre_name %>" で登録されている商品： <%= @genreitem.count %>件</div>
 				<%= render 'end_users/templetes/itemfind', items: @genreitems %>
-		<% end %>
+			<% end %>
 		</div>
 
 		<div class="col-xs-2">
