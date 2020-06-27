@@ -2,7 +2,10 @@
 	<div class="content">
 		新規投稿
 	</div>
-	<%= flash[:notice] %>
+	<div>
+		<%= flash[:notice] %>
+		<%= render "end_users/shared/error_messages", resource: @item %>
+	</div>
 
 	<%= form_for @item, url: {action: 'create'} do |f| %>
 		<!-- ローカル変数でfも渡す -->

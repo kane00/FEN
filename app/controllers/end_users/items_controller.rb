@@ -20,7 +20,11 @@ end
 
 def create
   @item = Item.new(item_params)
-  @item.save
+  if @item.save
+    redirect_to understand_end_users_items_path
+  else
+    render "new"
+  end
     # 確認画面を作る時用
   # if params[:back]
   #     flash[:notice] = '修正ページです'
@@ -38,7 +42,6 @@ def create
   #     flash[:notice] = 'エラーが発生しました。お手数ですがもう一度登録をお願いします。'
   #     render :new
   # end
-  redirect_to understand_end_users_items_path
 end
 
 # def new_confirm
@@ -69,7 +72,6 @@ def show
   @item = Item.find(params[:id])
   @comment = Comment.new
 # end
-
 end
 
 def edit

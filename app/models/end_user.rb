@@ -20,6 +20,9 @@ class EndUser < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_items, through: :likes, source: :item
 
+  validates :end_user_name, presence: true
+  validates :area, presence: true
+
   # 退会ユーザーはログインできなくする user_statusをもってくる
   def active_for_authentication?
     super && (self.user_status)

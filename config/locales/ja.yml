@@ -423,3 +423,7 @@ ja:
       previous: "&lsaquo; 前へ"
       next: "次へ &rsaquo;"
       truncate: "..."
+
+  errors:
+    messages:
+      not_saved: "エラーが発生しました"
