@@ -2,7 +2,10 @@
 	<div class="content">
 		商品編集
 	</div>
-	編集を行うと管理者が確認するまで「未確認」に変更されます。
+	<div>
+		編集を行うと管理者が確認するまで「未確認」に変更されます。
+		<%= render "end_users/shared/error_messages", resource: @item %>
+	</div>
 
 	<%= form_for @item, url: {action: 'update'} do |f| %>
 		<%= render 'end_users/templetes/form', f: f, item: @item  %>

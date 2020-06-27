@@ -1,6 +1,6 @@
 <% if params[:q] != nil %>		<!-- :qのパラメータをもっているかいないか -->
 	<% if items.count != 0 %>		<!-- :qのパラメータをもっている && 商品が1以上ある -->
-		<h6 class="text-right">栄養素をクリックすると多い順、少ない順に並び替えることができます。</h6>
+		<div class="text-right" style="font-size: 12px; margin-top: 10px;">栄養素をクリックすると多い順、少ない順に並び替えることができます。</div>
 		<div class="scroll-table">
 			<div style="float: left"><%= paginate items %></div>
 			<table>
@@ -64,40 +64,40 @@
 						<td><%= item.nutrients_lipid %></td>
 						<td><%= item.nutrients_carbohydrate %></td>
 						<td><%= item.nutrients_salt %></td>
-						<td><%= item.nutrients_sodium %></td>
-						<td><%= item.nutrients_potassium %></td>
-						<td><%= item.nutrients_calcium %></td>
-						<td><%= item.nutrients_magnesium %></td>
-						<td><%= item.nutrients_rin %></td>
-						<td><%= item.nutrients_iron %></td>
-						<td><%= item.nutrients_zinc %></td>
-						<td><%= item.nutrients_copper %></td>
-						<td><%= item.nutrients_manganese %></td>
-						<td><%= item.nutrients_lodine %></td>
-						<td><%= item.nutrients_selenium %></td>
-						<td><%= item.nutrients_chromium %></td>
-						<td><%= item.nutrients_molybdenum %></td>
-						<td><%= item.nutrients_vitamin_a %></td>
-						<td><%= item.nutrients_β_carotene %></td>
-						<td><%= item.nutrients_vitamin_d %></td>
-						<td><%= item.nutrients_vitamin_e %></td>
-						<td><%= item.nutrients_vitamin_k %></td>
-						<td><%= item.nutrients_vitamin_b1 %></td>
-						<td><%= item.nutrients_vitamin_b2 %></td>
-						<td><%= item.nutrients_niacin %></td>
-						<td><%= item.nutrients_vitmain_b6 %></td>
-						<td><%= item.nutrients_vitamin_b12 %></td>
-						<td><%= item.nutrients_folic_acid %></td>
-						<td><%= item.nutrients_pantothenic_acid %></td>
-						<td><%= item.nutrients_biotin %></td>
-						<td><%= item.nutrients_vitamin_c %></td>
-						<td><%= item.nutrients_saturated_fatty_acid %></td>
-						<td><%= item.nutrients_polyunsaturated_fatty_acid %></td>
-						<td><%= item.nutrients_monounsaturated_fatty_acid %></td>
-						<td><%= item.nutrients_cholesterol %></td>
-						<td><%= item.nutrients_soluble_dietary_fiber %></td>
-						<td><%= item.nutrients_insoluble_dietary_fiber %></td>
-						<td><%= item.nutrients_dietary_fiber %></td>
+						<td><%= item.nutrients_sodium || 'ー' %></td>
+						<td><%= item.nutrients_potassium || 'ー' %></td>
+						<td><%= item.nutrients_calcium || 'ー' %></td>
+						<td><%= item.nutrients_magnesium || 'ー' %></td>
+						<td><%= item.nutrients_rin || 'ー' %></td>
+						<td><%= item.nutrients_iron || 'ー' %></td>
+						<td><%= item.nutrients_zinc || 'ー' %></td>
+						<td><%= item.nutrients_copper || 'ー' %></td>
+						<td><%= item.nutrients_manganese || 'ー' %></td>
+						<td><%= item.nutrients_lodine || 'ー' %></td>
+						<td><%= item.nutrients_selenium || 'ー' %></td>
+						<td><%= item.nutrients_chromium || 'ー' %></td>
+						<td><%= item.nutrients_molybdenum || 'ー' %></td>
+						<td><%= item.nutrients_vitamin_a || 'ー' %></td>
+						<td><%= item.nutrients_β_carotene || 'ー' %></td>
+						<td><%= item.nutrients_vitamin_d || 'ー' %></td>
+						<td><%= item.nutrients_vitamin_e || 'ー' %></td>
+						<td><%= item.nutrients_vitamin_k || 'ー' %></td>
+						<td><%= item.nutrients_vitamin_b1 || 'ー' %></td>
+						<td><%= item.nutrients_vitamin_b2 || 'ー' %></td>
+						<td><%= item.nutrients_niacin || 'ー' %></td>
+						<td><%= item.nutrients_vitmain_b6 || 'ー' %></td>
+						<td><%= item.nutrients_vitamin_b12 || 'ー' %></td>
+						<td><%= item.nutrients_folic_acid || 'ー' %></td>
+						<td><%= item.nutrients_pantothenic_acid || 'ー' %></td>
+						<td><%= item.nutrients_biotin || 'ー' %></td>
+						<td><%= item.nutrients_vitamin_c || 'ー' %></td>
+						<td><%= item.nutrients_saturated_fatty_acid || 'ー' %></td>
+						<td><%= item.nutrients_polyunsaturated_fatty_acid || 'ー' %></td>
+						<td><%= item.nutrients_monounsaturated_fatty_acid || 'ー' %></td>
+						<td><%= item.nutrients_cholesterol || 'ー' %></td>
+						<td><%= item.nutrients_soluble_dietary_fiber || 'ー' %></td>
+						<td><%= item.nutrients_insoluble_dietary_fiber || 'ー' %></td>
+						<td><%= item.nutrients_dietary_fiber || 'ー' %></td>
 					</tr>
 				</tbody>
 				<% end %>
