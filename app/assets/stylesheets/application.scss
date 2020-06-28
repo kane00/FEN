@@ -305,7 +305,11 @@
 }
 
 
-.input-table1>tbody>tr>th, .input-table1>tbody>tr>td{
+.input-table1>tbody>tr>th{
+    padding-top: 10px;
+    font-size: 12px;
+}
+.input-table1>tbody>tr>td{
     padding-top: 10px;
 }
 .input-table2>tbody>tr>td:nth-child(1){
