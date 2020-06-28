@@ -36,6 +36,9 @@ module FEN
 	# タイムゾーンを東京に設定
 	config.time_zone = 'Tokyo'
 
+    # エラーメッセージのズレ修正
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
+
   end
 end
 
