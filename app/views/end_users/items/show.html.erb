@@ -33,11 +33,11 @@
 					</tr>
 					<tr>
 						<th>販売メーカー：</th>
-						<td colspan="3"><%= @item.maker %></td>
+						<td colspan="3"><%= @item.maker || 'ー' %></td>
 					</tr>
 					<tr>
 						<th>希望小売価格：</th>
-						<td colspan="3"><%= @item.retail_price %>円</td>
+						<td colspan="3"><%= @item.retail_price || 'ー' %>円</td>
 					</tr>
 					<tr>
 						<th>食品分類：</th>
@@ -53,7 +53,7 @@
 					</tr>
 					<tr>
 						<th>備考：</th>
-						<td colspan="3"><%= @item.remark %></td>
+						<td colspan="3"><%= @item.remark || '記載はありません。' %></td>
 					</tr>
 				</tbody>
 			</table>
@@ -92,63 +92,63 @@
 							<td>g</td>
 						</tr><tr>
 							<td>ナトリウム</td>
-							<td><%= @item.nutrients_sodium %></td>
+							<td><%= @item.nutrients_sodium  || 'ー'%></td>
 							<td>mg</td>
 						</tr><tr>
 							<td>カリウム</td>
-							<td><%= @item.nutrients_potassium %></td>
+							<td><%= @item.nutrients_potassium || 'ー' %></td>
 							<td>mg</td>
 						</tr><tr>
 							<td>カルシウム</td>
-							<td><%= @item.nutrients_calcium %></td>
+							<td><%= @item.nutrients_calcium || 'ー' %></td>
 							<td>mg</td>
 						</tr><tr>
 							<td>マグネシウム</td>
-							<td><%= @item.nutrients_magnesium %></td>
+							<td><%= @item.nutrients_magnesium || 'ー' %></td>
 							<td>mg</td>
 						</tr><tr>
 							<td>リン</td>
-							<td><%= @item.nutrients_rin %></td>
+							<td><%= @item.nutrients_rin || 'ー' %></td>
 							<td>mg</td>
 						</tr><tr>
 							<td>鉄</td>
-							<td><%= @item.nutrients_iron %></td>
+							<td><%= @item.nutrients_iron || 'ー' %></td>
 							<td>mg</td>
 						</tr><tr>
 							<td>亜鉛</td>
-							<td><%= @item.nutrients_zinc %></td>
+							<td><%= @item.nutrients_zinc || 'ー' %></td>
 							<td>mg</td>
 						</tr><tr>
 							<td>銅</td>
-							<td><%= @item.nutrients_copper %></td>
+							<td><%= @item.nutrients_copper || 'ー' %></td>
 							<td>mg</td>
 						</tr><tr>
 							<td>マンガン</td>
-							<td><%= @item.nutrients_manganese %></td>
+							<td><%= @item.nutrients_manganese || 'ー' %></td>
 							<td>mg</td>
 						</tr><tr>
 							<td>ヨウ素</td>
-							<td><%= @item.nutrients_lodine %></td>
+							<td><%= @item.nutrients_lodine || 'ー' %></td>
 							<td>μg</td>
 						</tr><tr>
 							<td>セレン</td>
-							<td><%= @item.nutrients_selenium %></td>
+							<td><%= @item.nutrients_selenium || 'ー' %></td>
 							<td>μg</td>
 						</tr><tr>
 							<td>クロム</td>
-							<td><%= @item.nutrients_chromium %></td>
+							<td><%= @item.nutrients_chromium || 'ー' %></td>
 							<td>μg</td>
 						</tr><tr>
 							<td>モリブデン</td>
-							<td><%= @item.nutrients_molybdenum %></td>
+							<td><%= @item.nutrients_molybdenum || 'ー' %></td>
 							<td>μg</td>
 						</tr><tr>
 							<td>ビタミンA</td>
-							<td><%= @item.nutrients_vitamin_a %></td>
+							<td><%= @item.nutrients_vitamin_a || 'ー' %></td>
 							<td>μg</td>
 						</tr><tr>
 							<td>βカロテン</td>
-							<td><%= @item.nutrients_β_carotene %></td>
+							<td><%= @item.nutrients_β_carotene || 'ー' %></td>
 							<td>μg</td>
 						</tr>
 					</tbody>
@@ -165,79 +165,79 @@
 					<tbody>
 						<tr>
 							<td>ビタミンD</td>
-							<td><%= @item.nutrients_vitamin_d %></td>
+							<td><%= @item.nutrients_vitamin_d || 'ー' %></td>
 							<td>μg</td>
 						</tr><tr>
 							<td>ビタミンE</td>
-							<td><%= @item.nutrients_vitamin_e %></td>
+							<td><%= @item.nutrients_vitamin_e || 'ー' %></td>
 							<td>mg</td>
 						</tr><tr>
 							<td>ビタミンK</td>
-							<td><%= @item.nutrients_vitamin_k %></td>
+							<td><%= @item.nutrients_vitamin_k || 'ー' %></td>
 							<td>μg</td>
 						</tr><tr>
 							<td>ビタミンB1</td>
-							<td><%= @item.nutrients_vitamin_b1 %></td>
+							<td><%= @item.nutrients_vitamin_b1 || 'ー' %></td>
 							<td>mg</td>
 						</tr><tr>
 							<td>ビタミンB2</td>
-							<td><%= @item.nutrients_vitamin_b2 %></td>
+							<td><%= @item.nutrients_vitamin_b2 || 'ー' %></td>
 							<td>mg</td>
 						</tr>
 						<tr>
 							<td>ナイアシン</td>
-							<td><%= @item.nutrients_niacin %></td>
+							<td><%= @item.nutrients_niacin || 'ー' %></td>
 							<td>mg</td>
 						</tr><tr>
 							<td>ビタミンB6</td>
-							<td><%= @item.nutrients_vitmain_b6 %></td>
+							<td><%= @item.nutrients_vitmain_b6 || 'ー' %></td>
 							<td>mg</td>
 						</tr><tr>
 							<td>ビタミンB12</td>
-							<td><%= @item.nutrients_vitamin_b12 %></td>
+							<td><%= @item.nutrients_vitamin_b12 || 'ー' %></td>
 							<td>μg</td>
 						</tr><tr>
 							<td>葉酸</td>
-							<td><%= @item.nutrients_folic_acid %></td>
+							<td><%= @item.nutrients_folic_acid || 'ー' %></td>
 							<td>μg</td>
 						</tr><tr>
 							<td>パントテン酸</td>
-							<td><%= @item.nutrients_pantothenic_acid %></td>
+							<td><%= @item.nutrients_pantothenic_acid || 'ー' %></td>
 							<td>mg</td>
 						</tr><tr>
 							<td>ビオチン</td>
-							<td><%= @item.nutrients_biotin %></td>
+							<td><%= @item.nutrients_biotin || 'ー' %></td>
 							<td>g</td>
 						</tr><tr>
 							<td>ビタミンC</td>
-							<td><%= @item.nutrients_vitamin_c %></td>
+							<td><%= @item.nutrients_vitamin_c || 'ー' %></td>
 							<td>mg</td>
 						</tr><tr>
 							<td>飽和脂肪酸</td>
-							<td><%= @item.nutrients_saturated_fatty_acid %></td>
+							<td><%= @item.nutrients_saturated_fatty_acid || 'ー' %></td>
 							<td>g</td>
 						</tr><tr>
 							<td>一価不飽和脂肪酸</td>
-							<td><%= @item.nutrients_polyunsaturated_fatty_acid %></td>
+							<td><%= @item.nutrients_polyunsaturated_fatty_acid || 'ー' %></td>
 							<td>g</td>
 						</tr><tr>
 							<td>多価不飽和脂肪酸</td>
-							<td><%= @item.nutrients_monounsaturated_fatty_acid %></td>
+							<td><%= @item.nutrients_monounsaturated_fatty_acid || 'ー' %></td>
 							<td>g</td>
 						</tr><tr>
 							<td>コレステロール</td>
-							<td><%= @item.nutrients_cholesterol %></td>
+							<td><%= @item.nutrients_cholesterol || 'ー' %></td>
 							<td>mg</td>
 						</tr><tr>
 							<td>水溶性食物繊維</td>
-							<td><%= @item.nutrients_soluble_dietary_fiber %></td>
+							<td><%= @item.nutrients_soluble_dietary_fiber || 'ー' %></td>
 							<td>g</td>
 						</tr><tr>
 							<td>不溶性食物繊維</td>
-							<td><%= @item.nutrients_insoluble_dietary_fiber %></td><td>g</td>
+							<td><%= @item.nutrients_insoluble_dietary_fiber || 'ー' %></td><td>g</td>
 						</tr><tr>
 							<td>食物繊維総量</td>
-							<td><%= @item.nutrients_dietary_fiber %></td>
+							<td><%= @item.nutrients_dietary_fiber || 'ー' %></td>
 							<td>g</td>
 						</tr>
 					</tbody>

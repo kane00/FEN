@@ -23,9 +23,9 @@ ActiveAdmin.register Item do
    column :genre_id
    column :unit_id
    column :item_name
-   column :image_id do |i|
-    image_tag 'noimage.png'   #imageを表示するがattachmentは機能していない？image_tagで
-   end
+   # column :image_id do |i|
+   #  image_tag 'noimage.png'   #imageを表示するがattachmentは機能していない？image_tagで
+   # end
    column :item_status
    column :confirm_status
 
