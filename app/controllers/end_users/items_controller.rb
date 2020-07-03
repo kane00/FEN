@@ -4,7 +4,7 @@ before_action :authenticate_end_user!, except: [:top, :about]
 
 def top
 	@genres = Genre.all
-  @tags = Item.tag_counts_on(:tags).order('count DESC')
+  @tags = ActsAsTaggableOn::Tag.most_used(10)
   @q = Item.where.not(item_status: 'false').ransack(params[:q])
   @items = Item.where.not(item_status: 'false')
 end
@@ -110,7 +110,7 @@ end
 def search
   #@item = Item.where.not(item_status: 'false')    #item_statusがfalseではない=trueを取り出す
 	@genres = Genre.all 	#左のジャンル用
-  @tags = Item.tag_counts_on(:tags).order('count DESC')
+  @tags = ActsAsTaggableOn::Tag.most_used(10)
   # 検索用
   @q = Item.where.not(item_status: 'false').ransack(params[:q])   #item_statusがfalseではない=trueを取り出す
   @item = @q.result(distinct: true)
