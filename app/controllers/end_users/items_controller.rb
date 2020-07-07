@@ -62,8 +62,6 @@ def upload
     @carbo = tags3.select { |i| i.include?("g") }[2].delete("g").gsub(" ", "")
     @salt = tags3.select { |i| i.include?("g") }[3].delete("g").gsub(" ", "")
     @data = { nutrients_calorie: @calorie, nutrients_protein: @protein, nutrients_lipid: @lipid, nutrients_carbohydrate: @carbo, nutrients_salt: @salt }
-
-    byebug
     respond_to do |format|
       format.html
       format.json
