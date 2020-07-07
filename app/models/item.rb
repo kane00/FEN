@@ -8,6 +8,7 @@ class Item < ApplicationRecord
 
 	# 画像表示用
 	attachment :image
+	attachment :image_confirm
 
 	# タグ機能,acts_as_taggable_on :tags　と同じ意味のエイリアス
 	acts_as_taggable_on :tags
