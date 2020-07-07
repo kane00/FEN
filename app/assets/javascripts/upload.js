@@ -1,8 +1,6 @@
 $(function(){
   if(document.URL.match(/\/end_users\/items\/new/)) {
- //~中略~
     $(document).on('change', '#item_image_confirm',function(e) {
- //~中略~
       e.preventDefault();
       var formData = new FormData();
       formData.append("image",$('#item_image_confirm')[0].files[0]);
