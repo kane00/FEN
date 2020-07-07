@@ -94,6 +94,9 @@ gem 'ransack'
 
 gem 'pry-byebug'
 
+# API
+gem 'google-cloud-vision', require: false
+
 # デプロイ、お問い合わせ用
 gem 'dotenv-rails'
 group :production do
