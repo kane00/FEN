@@ -38,6 +38,7 @@ Rails.application.routes.draw do
         get 'understand' => 'items#understand'
         get ':id/comment_all' => 'items#comment_all', as: 'comment_all'
         post ':id/edit_confirm' => 'items#edit_confirm', as: 'edit_confirm'
+        post "upload"
       end
       # コメント
       resources :comments, only: [:create, :destroy]

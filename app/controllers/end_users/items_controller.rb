@@ -1,6 +1,8 @@
 class EndUsers::ItemsController < ApplicationController
 
 before_action :authenticate_end_user!, except: [:top, :about]
+# 外部からPOSTできない仕様に初期でなっている、RailsのCSRF対策
+protect_from_forgery except: [:upload]
 
 def top
 	@genres = Genre.all
@@ -43,6 +45,30 @@ def create
   #     render :new
   # end
 end
+
+def upload
+    params[:image].tempfile.to_path
+    tag = Vision.get_image_data(params[:image].tempfile.to_path)
+    tags = tag[0].split("\n")  #splitは/n”があったらその地点で一つの要素にする
+    # [/炭水化物(.{0,3}\d+\.?\d+)/][/\d+\.?\d+/].to_f   #「\d+」は「1桁以上の数値」＋「〜」
+      # kcalが最初に書かれている要素の順番をセットする indexは何番目かを見つける
+    tags2 = tags.index { |i| i.include?("kcal") }
+      # tags2以降の配列を取り出す
+    tags3 = tags[tags2..-1]
+      # tags3からの栄養素で栄養素の順番を見つける
+    @calorie = tags3.select { |i| i.include?("kcal") }[0].delete("kcal").gsub(" ", "")
+    @protein = tags3.select { |i| i.include?("g") }[0].delete("g").gsub(" ", "")   #selectで条件に当てはまる要素を提示し、文字列のgをinclude?で探して0番目
+    @lipid = tags3.select { |i| i.include?("g") }[1].delete("g").gsub(" ", "")   #deleteは削除、gsubは1つ目を2つ名に変換する
+    @carbo = tags3.select { |i| i.include?("g") }[2].delete("g").gsub(" ", "")
+    @salt = tags3.select { |i| i.include?("g") }[3].delete("g").gsub(" ", "")
+    @data = { nutrients_calorie: @calorie, nutrients_protein: @protein, nutrients_lipid: @lipid, nutrients_carbohydrate: @carbo, nutrients_salt: @salt }
+
+    byebug
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
 
 # def new_confirm
 #   @item = Item.find(params[:id])
@@ -129,6 +155,6 @@ end
 private
 
    def item_params
-     params.require(:item).permit(:item_name, :image, :maker, :retail_price, :remark, :item_status, :confirm_status, :tag_list, :end_user_id, :genre_id, :unit_id, :nutrients_calorie, :nutrients_protein, :nutrients_lipid, :nutrients_carbohydrate, :nutrients_salt, :nutrients_sodium, :nutrients_potassium, :nutrients_calcium, :nutrients_magnesium, :nutrients_rin, :nutrients_iron, :nutrients_zinc, :nutrients_copper, :nutrients_manganese, :nutrients_lodine, :nutrients_selenium, :nutrients_chromium, :nutrients_molybdenum, :nutrients_vitamin_a, :nutrients_β_carotene, :nutrients_vitamin_d, :nutrients_vitamin_e, :nutrients_vitamin_k, :nutrients_vitamin_b1, :nutrients_vitamin_b2, :nutrients_niacin, :nutrients_vitmain_b6, :nutrients_vitamin_b12, :nutrients_folic_acid, :nutrients_pantothenic_acid, :nutrients_biotin, :nutrients_vitamin_c, :nutrients_saturated_fatty_acid, :nutrients_polyunsaturated_fatty_acid, :nutrients_monounsaturated_fatty_acid, :nutrients_cholesterol, :nutrients_soluble_dietary_fiber, :nutrients_insoluble_dietary_fiber, :nutrients_dietary_fiber)
+     params.require(:item).permit(:item_name, :image, :image_confirm, :maker, :retail_price, :remark, :item_status, :confirm_status, :tag_list, :end_user_id, :genre_id, :unit_id, :nutrients_calorie, :nutrients_protein, :nutrients_lipid, :nutrients_carbohydrate, :nutrients_salt, :nutrients_sodium, :nutrients_potassium, :nutrients_calcium, :nutrients_magnesium, :nutrients_rin, :nutrients_iron, :nutrients_zinc, :nutrients_copper, :nutrients_manganese, :nutrients_lodine, :nutrients_selenium, :nutrients_chromium, :nutrients_molybdenum, :nutrients_vitamin_a, :nutrients_β_carotene, :nutrients_vitamin_d, :nutrients_vitamin_e, :nutrients_vitamin_k, :nutrients_vitamin_b1, :nutrients_vitamin_b2, :nutrients_niacin, :nutrients_vitmain_b6, :nutrients_vitamin_b12, :nutrients_folic_acid, :nutrients_pantothenic_acid, :nutrients_biotin, :nutrients_vitamin_c, :nutrients_saturated_fatty_acid, :nutrients_polyunsaturated_fatty_acid, :nutrients_monounsaturated_fatty_acid, :nutrients_cholesterol, :nutrients_soluble_dietary_fiber, :nutrients_insoluble_dietary_fiber, :nutrients_dietary_fiber)
    end
 end

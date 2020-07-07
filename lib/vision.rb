@@ -3,10 +3,11 @@ require 'json'
 require 'net/https'
 module Vision
   class << self
-    def get_image_data(image_file)
+    def get_image_data(image_file_path)
       api_url = "https://vision.googleapis.com/v1/images:annotate?key=#{ENV['GOOGLE_VISION_API_KEY']}"
       # 画像をbase64にエンコード
-      base64_image = Base64.encode64(open("#{Rails.root}/public/uploads/#{image_file.id}").read)
+      # base64_image = Base64.encode64(open("#{Rails.root}/tmp/uploads/store/#{image_file.id}").read)
+      base64_image = Base64.encode64(open(image_file_path).read)
       # APIリクエスト用のJSONパラメータ
       params = {
         requests: [{
@@ -15,7 +16,7 @@ module Vision
           },
           features: [
             {
-              type: 'LABEL_DETECTION'
+              type: 'text_DETECTION'
             }
           ]
         }]
@@ -28,7 +29,7 @@ module Vision
       request['Content-Type'] = 'application/json'
       response = https.request(request, params)
       # APIレスポンス出力
-      JSON.parse(response.body)['responses'][0]['labelAnnotations'].pluck('description').take(3)
+      JSON.parse(response.body)['responses'][0]['textAnnotations'].pluck('description').take(3)
     end
   end
 end
