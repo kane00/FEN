@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
 # 最初にbefore_actionが実行される。そして、次にそこに定義されたconfigure_permitted_parametersが実行
 before_action :configure_permitted_parameters, if: :devise_controller?
 
-
   protected
 
   # ログイン後のリダイレクト先

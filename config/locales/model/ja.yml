@@ -1,0 +1,81 @@
+ja:
+  activerecord:
+    models:
+      admin_user: 管理者
+      item: 商品
+      unit: 単位
+      genre: 食品分類
+      end_user: ユーザー
+      comment: コメント
+
+    attributes:
+      admin_user:
+        email: メールアドレス
+        created_at: 作成日時
+        updated_at: 更新日時
+      item:
+        item_name: 商品名
+        end_user_id: 作成したユーザー
+        genre_id: 食品分類
+        unit_id: 単位
+        maker: 販売メーカー
+        retail_price: 小売価格
+        remark: 備考
+        item_status: 商品を表示する
+        confirm_status: 管理者が確認した
+        nutrients_calorie: エネルギー
+        nutrients_protein: たんぱく質
+        nutrients_lipid: 脂質
+        nutrients_carbohydrate: 炭水化物
+        nutrients_salt: 食塩相当量
+        nutrients_sodium: ナトリウム
+        nutrients_potassium: カリウム
+        nutrients_calcium: カルシウム
+        nutrients_magnesium: マグネシウム
+        nutrients_rin: リン
+        nutrients_iron: 鉄
+        nutrients_zinc: 亜鉛
+        nutrients_copper: 銅
+        nutrients_manganese: マンガン
+        nutrients_lodine: ヨウ素
+        nutrients_selenium: セレン
+        nutrients_chromium: クロム
+        nutrients_molybdenum: モリブデン
+        nutrients_vitamin_a: ビタミンA
+        nutrients_β_carotene: βカロテン
+        nutrients_vitamin_d: ビタミンD
+        nutrients_vitamin_e: ビタミンE
+        nutrients_vitamin_k: ビタミンK
+        nutrients_vitamin_b1: ビタミンB1
+        nutrients_vitamin_b2: ビタミンB2
+        nutrients_niacin: ナイアシン
+        nutrients_vitmain_b6: ビタミンB6
+        nutrients_vitamin_b12: ビタミンB12
+        nutrients_folic_acid: 葉酸
+        nutrients_pantothenic_acid: パントテン酸
+        nutrients_biotin: ビオチン
+        nutrients_vitamin_c: ビタミンC
+        nutrients_saturated_fatty_acid: 飽和脂肪酸
+        nutrients_polyunsaturated_fatty_acid: 一価不飽和脂肪酸
+        nutrients_monounsaturated_fatty_acid: 多価不飽和脂肪酸
+        nutrients_cholesterol: コレステロール
+        nutrients_soluble_dietary_fiber: 水溶性食物繊維
+        nutrients_insoluble_dietary_fiber: 不溶性食物繊維
+        nutrients_dietary_fiber: 食物繊維総量
+        created_at: 作成日時
+        updated_at: 更新日時
+      unit:
+        unit_name: 単位名
+        unit_status: 使用可能か
+        created_at: 作成日時
+        updated_at: 更新日時
+      genre:
+        genre_name: 食品分類名
+        genre_status: 使用可能か
+        created_at: 作成日時
+        updated_at: 更新日時
+      end_user:
+        email: メールアドレス
+        end_user_name: ユーザー名
+        area: お住まいの地域
+        user_status: 利用可能か
