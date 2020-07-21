@@ -13,7 +13,7 @@ class Item < ApplicationRecord
 	# タグ機能,acts_as_taggable_on :tags　と同じ意味のエイリアス
 	acts_as_taggable_on :tags
 
-	validates :item_name, uniqueness: true
+	validates :item_name, uniqueness: true, presence: true
 	validates :nutrients_calorie, numericality: true
 	validates :nutrients_protein, numericality: true
 	validates :nutrients_lipid, numericality: true
