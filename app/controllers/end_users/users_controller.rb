@@ -1,6 +1,7 @@
 class EndUsers::UsersController < ApplicationController
 
 before_action :authenticate_end_user!
+before_action :ensure_correct_user, only: [:edit, :update]
 
 def index
 end
@@ -33,5 +34,13 @@ end
    def user_params
      params.require(:end_user).permit(:end_user_name, :email, :area, :user_status)
    end
+
+   #他ユーザーのマイページを編集するのを防ぐ
+   def ensure_correct_user
+    if current_end_user.id != params[:id].to_i
+      flash[:notice] = "編集権限がありません"
+      redirect_to end_users_user_path(current_end_user.id)
+    end
+  end
 
 end

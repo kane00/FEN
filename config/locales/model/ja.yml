@@ -13,11 +13,13 @@ ja:
         email: メールアドレス
         created_at: 作成日時
         updated_at: 更新日時
+        password: パスワード
+        password_confirmation: パスワード(確認用)
       item:
         item_name: 商品名
-        end_user_id: 作成したユーザー
-        genre_id: 食品分類
-        unit_id: 単位
+        end_user: 作成したユーザー
+        genre: 食品分類
+        unit: 単位
         maker: 販売メーカー
         retail_price: 小売価格
         remark: 備考
@@ -65,6 +67,7 @@ ja:
         created_at: 作成日時
         updated_at: 更新日時
       unit:
+        item: 商品
         unit_name: 単位名
         unit_status: 使用可能か
         created_at: 作成日時
@@ -79,3 +82,4 @@ ja:
         end_user_name: ユーザー名
         area: お住まいの地域
         user_status: 利用可能か
+        created_at: 登録日時
