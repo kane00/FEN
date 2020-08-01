@@ -158,6 +158,7 @@
 }
 
 
+
 .like-btn {
  width: 20px;
  height: 20px;
@@ -207,7 +208,6 @@
     table-layout: fixed;
     display: block;
     overflow-x: scroll;
-    white-space: nowrap;
     -webkit-overflow-scrolling: touch;
 }
 .scroll-table>table>tbody:nth-child(odd) {
@@ -220,12 +220,13 @@
     padding-right: 10px;
     padding-left: 10px;
     text-align: center;
+    white-space: nowrap;
 }
 .scroll-table>table>tbody>tr>td{
-    padding: 5px 10px 5px 10px;
+    padding: 5px 30px 5px 30px;
     border-bottom: solid 1px;
-    line-height: 50px;
     text-align: center;
+    vertical-align: middle;
 }
 .scroll-table>table>thead>tr>th:first-child{
     /* 横スクロール時に固定する */
@@ -233,12 +234,14 @@
   position: sticky;
   left: 0;
   z-index: 2;
+  padding: 0 125px 0 125px;
 }
 .scroll-table>table>tbody>tr>td:first-child{
   position: -webkit-sticky;
   position: sticky;
   left: 0;
   background: darken(#F0F8FF, 2%);
+  word-break : break-all;
 }
 
 

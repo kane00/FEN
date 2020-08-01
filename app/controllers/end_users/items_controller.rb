@@ -3,6 +3,10 @@ class EndUsers::ItemsController < ApplicationController
 before_action :authenticate_end_user!, except: [:top, :about]
 # 外部からPOSTできない仕様に初期でなっている、RailsのCSRF対策
 protect_from_forgery except: [:upload]
+protect_from_forgery with: :exception
+  autocomplete :item, :item_name, full: true
+  # 第1引数 => model名(必須) #第2引数 => column名(必須)
+  # 第3引数 => オプション full: true (任意)
 
 def top
 	@genres = Genre.all
