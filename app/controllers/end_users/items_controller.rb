@@ -3,6 +3,10 @@ class EndUsers::ItemsController < ApplicationController
 before_action :authenticate_end_user!, except: [:top, :about]
 # 外部からPOSTできない仕様に初期でなっている、RailsのCSRF対策
 protect_from_forgery except: [:upload]
+protect_from_forgery with: :exception
+  autocomplete :item, :item_name, full: true
+  # 第1引数 => model名(必須) #第2引数 => column名(必須)
+  # 第3引数 => オプション full: true (任意)
 
 def top
 	@genres = Genre.all
@@ -55,7 +59,7 @@ def upload
     tags2 = tags.index { |i| i.include?("kcal") }
       # tags2以降の配列を取り出す
     tags3 = tags[tags2..-1]
-      # tags3からの栄養素で栄養素の順番を見つける
+      # tags3からの栄養素で栄養素の順番を見つけていく
     @calorie = tags3.select { |i| i.include?("kcal") }[0].delete("kcal").gsub(" ", "")
     @protein = tags3.select { |i| i.include?("g") }[0].delete("g").gsub(" ", "")   #selectで条件に当てはまる要素を提示し、文字列のgをinclude?で探して0番目
     @lipid = tags3.select { |i| i.include?("g") }[1].delete("g").gsub(" ", "")   #deleteは削除、gsubは1つ目を2つ名に変換する

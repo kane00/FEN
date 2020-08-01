@@ -32,11 +32,10 @@ ActiveAdmin.register Unit do
     attributes_table(*unit.class.columns.collect { |column| column.name.to_sym })
     panel "商品一覧" do
       table_for unit.items do
-        column :image
         column :item_name
       end
     end
-    active_admin_comments
+    #active_admin_comments #コメントを残せる
   end
 
 end

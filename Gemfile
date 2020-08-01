@@ -97,6 +97,9 @@ gem 'pry-byebug'
 # API
 gem 'google-cloud-vision', require: false
 
+# オートコンプリート
+gem 'rails4-autocomplete'
+
 # デプロイ、お問い合わせ用
 gem 'dotenv-rails'
 group :production do

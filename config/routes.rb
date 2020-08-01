@@ -39,6 +39,7 @@ Rails.application.routes.draw do
         get ':id/comment_all' => 'items#comment_all', as: 'comment_all'
         post ':id/edit_confirm' => 'items#edit_confirm', as: 'edit_confirm'
         post "upload"
+        get 'autocomplete_item_name' # 追加
       end
       # コメント
       resources :comments, only: [:create, :destroy]
@@ -56,4 +57,4 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-end
+ end

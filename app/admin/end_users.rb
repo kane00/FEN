@@ -22,7 +22,7 @@ ActiveAdmin.register EndUser do
    column :end_user_name
    column :area
    column :user_status
-   column :remember_created_at
+   column :created_at
    actions
   end
 

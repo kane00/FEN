@@ -350,6 +350,13 @@ ActiveAdmin.setup do |config|
   # config.logout_link_path = :destroy_admin_session_path    # ログアウト時のパス 新たに定義する routes
   # config.logout_link_method = :delete                      # ログアウト時の METHOD を DELETE へ
 
+  #ログアウトボタン表示
+  config.namespace :admin do |admin|
+    admin.build_menu do |menu|
+      menu.add label: "ログアウト", url: "/", priority: 4
+    end
+  end
+
 end
 
 
